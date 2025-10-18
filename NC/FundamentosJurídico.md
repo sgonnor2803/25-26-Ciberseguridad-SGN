@@ -2,7 +2,7 @@
 
 ![Imagen Presentación](#)
 
-***Fecha:*** 21 de octubre de 2025
+***Fecha:*** 20 de octubre de 2025
 <br>***Autor***: Sergio González
 
 ---
