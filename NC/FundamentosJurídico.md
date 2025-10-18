@@ -1,6 +1,6 @@
 <h1 align="center">Fundamentos Jurídicos de la Seguridad Informática</h1>
 
-![Imagen Presentación](#)
+![Imagen Presentación](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/bannerPortada.jpg)
 
 ***Fecha:*** 20 de octubre de 2025
 <br>***Autor***: Sergio González
@@ -18,11 +18,11 @@
 
 ## 1. ***Actividad 1***
 
-En esta actividad he utilizado **NotebookLM** y le he adjuntado el archivo pdf como fuente.
+En esta actividad he utilizado ***NotebookLM*** y le he adjuntado el archivo pdf como fuente.
 
 ![Imagen IA NotebookLM](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoNotebookLM1.png)
 
-He insertado el siguiente **prompt**:
+He insertado el siguiente ***prompt***:
 
 ```
 Buscad en Internet el término bien jurídico o interés jurídico. ¿Creéis que tiene que existir un mínimo consenso en la sociedad
@@ -32,22 +32,20 @@ bienes jurídicos?
 
 ![Imagen Prompt IA NotebookLM](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoNotebookLM2.png)
 
-NotebookLM me ha dado esta **respuesta** al anterior prompt:
+NotebookLM me ha dado esta ***respuesta*** al anterior prompt:
 
 ![Imagen Respuesta IA NotebookLM](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoNotebookLM3.png)
 ![Imagen Respuesta IA NotebookLM](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoNotebookLM4.png)
-
-> Hablar sobre la respuesta
 
 ---
 
 ## 2. ***Actividad 2***
 
-En esta actividad he utilizado **ChatGPT** y le he adjuntado el archivo pdf como fuente.
+En esta actividad he utilizado ***ChatGPT*** y le he adjuntado el archivo pdf como fuente.
 
 ![Imagen IA ChatGPT](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoChatGPT1.png)
 
-He insertado el siguiente **prompt**:
+He insertado el siguiente ***prompt***:
 
 ```
 ¿Existe alguna diferencia entre una norma penal y las demás normas jurídicas?
@@ -55,21 +53,19 @@ He insertado el siguiente **prompt**:
 
 ![Imagen Prompt IA ChatGPT](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoChatGPT2.png)
 
-ChatGPT me ha dado esta **respuesta** al anterior prompt:
+ChatGPT me ha dado esta ***respuesta*** al anterior prompt:
 
 ![Imagen Respuesta IA ChatGPT](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoChatGPT3.png)
-
-> Hablar sobre la respuesta
 
 ---
 
 ## 3. ***Actividad 3***
 
-En esta actividad he utilizado **Gemini** y le he adjuntado el archivo pdf como fuente.
+En esta actividad he utilizado ***Gemini*** y le he adjuntado el archivo pdf como fuente.
 
 ![Imagen IA Gemini](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoGemini1.png)
 
-He insertado el siguiente **prompt**:
+He insertado el siguiente ***prompt***:
 
 ```
 ¿Creéis que Internet necesita algún tipo de regulación jurídica? Proponed aspectos que penséis que van a necesitar regulación.
@@ -77,23 +73,21 @@ He insertado el siguiente **prompt**:
 
 ![Imagen Prompt IA Gemini](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoGemini2.png)
 
-Gemini me ha dado esta **respuesta** al anterior prompt:
+Gemini me ha dado esta ***respuesta*** al anterior prompt:
 
 ![Imagen Respuesta IA Gemini](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoGemini3.png)
 ![Imagen Respuesta IA Gemini](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoGemini4.png)
 ![Imagen Respuesta IA Gemini](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoGemini5.png)
 
-> Hablar sobre la respuesta
-
 ---
 
 ## 4. ***Actividad 4***
 
-En esta actividad he utilizado **Perplexity** y le he adjuntado el archivo pdf como fuente.
+En esta actividad he utilizado ***Perplexity*** y le he adjuntado el archivo pdf como fuente.
 
 ![Imagen IA Perplexity](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoPerplexity1.png)
 
-He insertado el siguiente **prompt**:
+He insertado el siguiente ***prompt***:
 
 ```
 Clasificad los términos inferiores en estas categorías: a) derechos y libertades; b) sectores o
@@ -114,9 +108,7 @@ ramas del ordenamiento jurídico; c) sanciones y d) normas jurídicas.
 
 ![Imagen Prompt IA Perplexity](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoPerplexity2.png)
 
-Perplexity me ha dado esta **respuesta** al anterior prompt:
+Perplexity me ha dado esta ***respuesta*** al anterior prompt:
 
 ![Imagen Respuesta IA Perplexity](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoPerplexity3.png)
 ![Imagen Respuesta IA Perplexity](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoPerplexity4.png)
-
-> Hablar sobre la respuesta
