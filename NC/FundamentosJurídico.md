@@ -9,10 +9,10 @@
 
 ## Índice
 
-1. ***[Actividad 1](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/edit/master/NC/FundamentosJur%C3%ADdico.md#1-actividad-1)***
-2. ***[Actividad 2](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/edit/master/NC/FundamentosJur%C3%ADdico.md#2-actividad-2)***
-3. ***[Actividad 3](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/edit/master/NC/FundamentosJur%C3%ADdico.md#3-actividad-3)***
-4. ***[Actividad 4](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/edit/master/NC/FundamentosJur%C3%ADdico.md#4-actividad-4)***
+1. ***[Actividad 1](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/FundamentosJur%C3%ADdico.md#1-actividad-1)***
+2. ***[Actividad 2](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/FundamentosJur%C3%ADdico.md#2-actividad-2)***
+3. ***[Actividad 3](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/FundamentosJur%C3%ADdico.md#3-actividad-3)***
+4. ***[Actividad 4](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/FundamentosJur%C3%ADdico.md#4-actividad-4)***
 
 ---
 
