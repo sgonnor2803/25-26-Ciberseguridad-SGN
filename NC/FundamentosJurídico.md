@@ -20,7 +20,7 @@
 
 En esta actividad he utilizado **NotebookLM** y le he adjuntado el archivo pdf como fuente.
 
-![Imagen IA NotebookLM](#)
+![Imagen IA NotebookLM](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoNotebookLM1.png)
 
 He insertado el siguiente **prompt**:
 
@@ -30,11 +30,12 @@ sobre qué debe considerarse bien jurídico? ¿Podríais poner ejemplos de valor
 bienes jurídicos?
 ```
 
-![Imagen Prompt IA NotebookLM](#)
+![Imagen Prompt IA NotebookLM](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoNotebookLM2.png)
 
 NotebookLM me ha dado esta **respuesta** al anterior prompt:
 
-![Imagen Respuesta IA NotebookLM](#)
+![Imagen Respuesta IA NotebookLM](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoNotebookLM3.png)
+![Imagen Respuesta IA NotebookLM](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoNotebookLM4.png)
 
 > Hablar sobre la respuesta
 
@@ -44,7 +45,7 @@ NotebookLM me ha dado esta **respuesta** al anterior prompt:
 
 En esta actividad he utilizado **ChatGPT** y le he adjuntado el archivo pdf como fuente.
 
-![Imagen IA ChatGPT](#)
+![Imagen IA ChatGPT](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoChatGPT1.png)
 
 He insertado el siguiente **prompt**:
 
@@ -52,11 +53,11 @@ He insertado el siguiente **prompt**:
 ¿Existe alguna diferencia entre una norma penal y las demás normas jurídicas?
 ```
 
-![Imagen Prompt IA ChatGPT](#)
+![Imagen Prompt IA ChatGPT](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoChatGPT2.png)
 
 ChatGPT me ha dado esta **respuesta** al anterior prompt:
 
-![Imagen Respuesta IA ChatGPT](#)
+![Imagen Respuesta IA ChatGPT](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoChatGPT3.png)
 
 > Hablar sobre la respuesta
 
@@ -66,7 +67,7 @@ ChatGPT me ha dado esta **respuesta** al anterior prompt:
 
 En esta actividad he utilizado **Gemini** y le he adjuntado el archivo pdf como fuente.
 
-![Imagen IA Gemini](#)
+![Imagen IA Gemini](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoGemini1.png)
 
 He insertado el siguiente **prompt**:
 
@@ -74,11 +75,13 @@ He insertado el siguiente **prompt**:
 ¿Creéis que Internet necesita algún tipo de regulación jurídica? Proponed aspectos que penséis que van a necesitar regulación.
 ```
 
-![Imagen Prompt IA Gemini](#)
+![Imagen Prompt IA Gemini](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoGemini2.png)
 
 Gemini me ha dado esta **respuesta** al anterior prompt:
 
-![Imagen Respuesta IA Gemini](#)
+![Imagen Respuesta IA Gemini](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoGemini3.png)
+![Imagen Respuesta IA Gemini](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoGemini4.png)
+![Imagen Respuesta IA Gemini](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoGemini5.png)
 
 > Hablar sobre la respuesta
 
@@ -88,7 +91,7 @@ Gemini me ha dado esta **respuesta** al anterior prompt:
 
 En esta actividad he utilizado **Perplexity** y le he adjuntado el archivo pdf como fuente.
 
-![Imagen IA Perplexity](#)
+![Imagen IA Perplexity](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoPerplexity1.png)
 
 He insertado el siguiente **prompt**:
 
@@ -109,10 +112,11 @@ ramas del ordenamiento jurídico; c) sanciones y d) normas jurídicas.
   ● Fundamentos jurídicos
 ```
 
-![Imagen Prompt IA Perplexity](#)
+![Imagen Prompt IA Perplexity](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoPerplexity2.png)
 
 Perplexity me ha dado esta **respuesta** al anterior prompt:
 
-![Imagen Respuesta IA Perplexity](#)
+![Imagen Respuesta IA Perplexity](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoPerplexity3.png)
+![Imagen Respuesta IA Perplexity](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/fundamentosJuridicoPerplexity4.png)
 
 > Hablar sobre la respuesta
