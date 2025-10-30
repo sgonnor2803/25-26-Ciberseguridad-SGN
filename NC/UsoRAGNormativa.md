@@ -9,14 +9,14 @@
 
 ## Índice
 
-1. ***[Actividad 1](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/FundamentosJur%C3%ADdico.md#1-actividad-1)***
-2. ***[Actividad 2](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/FundamentosJur%C3%ADdico.md#2-actividad-2)***
+1. ***[Investigar sanciones caso](#)***
+2. ***[Desarrollar un caso práctico](#)***
 
 ---
 
-## 1. ***Actividad 1***
+## 1. ***Investigar sanciones caso***
 
 
 
-## 2. ***Actividad 1***
+## 2. ***Desarrollar un caso práctico***
 
