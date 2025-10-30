@@ -48,3 +48,29 @@ Las infracciones graves y muy graves podrán llevar aparejada la publicación de
 
 ## 2. ***Desarrollar un caso práctico***
 
+### Descripción del caso
+---
+
+La empresa DataSegur S.L., dedicada al almacenamiento de información en la nube para pequeñas empresas, sufre una intrusión en uno de sus servidores.
+Un ex empleado, Carlos M., logra acceder utilizando unas credenciales antiguas que la empresa no había eliminado tras su salida. Durante el acceso, copia una base de datos con información personal de unos 2.000 clientes, que incluye nombres, direcciones, números de DNI y datos bancarios.
+
+Posteriormente, intenta vender esa información a través de foros en la dark web. El equipo de seguridad detecta la intrusión una semana después, al observar accesos sospechosos en los registros del sistema. La empresa notifica el incidente a la Agencia Española de Protección de Datos (AEPD) y a los afectados.
+
+
+### Posibles consecuencias penales y administrativas
+---
+
+#### Consecuencias penales (para el ex empleado)
+
+- El acceso sin autorización a un sistema informático que contiene datos personales constituye un delito de descubrimiento y revelación de secretos, según el ***artículo 197*** del Código Penal.
+- Por haber accedido, copiado y tratado de vender información personal, Carlos M. podría enfrentarse a una pena de prisión de 1 a 4 años y a una multa de 12 a 24 meses.
+- Además, los afectados podrían reclamar indemnización por los daños y perjuicios ocasionados (***artículo 82 del RGPD***).
+
+
+#### Consecuencias administrativas (para la empresa)
+
+- La empresa DataSegur S.L. podría ser sancionada por no aplicar las medidas técnicas y organizativas adecuadas para proteger los datos (***artículo 32 del RGPD***).
+- Estas infracciones pueden suponer multas de hasta 10 millones de euros o el 2% del volumen de negocio anual, según el ***artículo 83.4 del RGPD***.
+- Según la LOPDGDD (***art. 72.1.g***), también se consideraría una infracción muy grave por vulnerar el principio de integridad y confidencialidad.
+- Además, la AEPD podría exigir la publicación de la sanción y la notificación pública del incidente, afectando a la reputación de la empresa.
+
