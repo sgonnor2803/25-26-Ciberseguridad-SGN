@@ -9,8 +9,8 @@
 
 ## Índice
 
-1. ***[Investigar sanciones caso](#)***
-2. ***[Desarrollar un caso práctico](#)***
+1. ***[Investigar sanciones caso](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/UsoRAGNormativa.md#1-investigar-sanciones-caso)***
+2. ***[Desarrollar un caso práctico](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/UsoRAGNormativa.md#2-desarrollar-un-caso-pr%C3%A1ctico)***
 
 ---
 
