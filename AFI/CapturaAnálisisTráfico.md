@@ -19,7 +19,32 @@
 
 ## 1. ***Preparación de la Herramienta***
 
+En primer lugar, procedemos a preparar el entorno de trabajo utilizando una máquina virtual con Kali Linux, sistema operativo especializado en ciberseguridad. Dentro de este entorno instalamos y configuramos Wireshark, herramienta que emplearemos para la captura y análisis del tráfico de red.
 
+- En primer lugar, como he dicho anteriormente, vamos a descargar e instalar wireshark en nuestro sistema. Para ello, ejecutamos el siguiente comando:
+
+```bash
+sudo apt install wireshark
+```
+
+![Imágen Captura Tráfico 1](#)
+
+- Comprobamos que se ha instalado correctamente el paquete, ejecutamos el siguiente comando:
+
+```bash
+wireshark --version
+```
+
+![Imágen Captura Tráfico 2](#)
+> Como podemos ver, se ha instalado correctamente la versión 4.4.9. de Wireshark.
+
+- Por último, podemos ejecutar wireshark desde el siguiente comando:
+
+![Imágen Captura Tráfico 3](#)
+
+![Imágen Captura Tráfico 4](#)
+
+> El símbolo "**&**" nos permite ejecutar wireshark y ponerlo en segundo plano, para poder seguir usando la terminal.
 
 ---
 ## 2. ***Captura de Tráfico***
