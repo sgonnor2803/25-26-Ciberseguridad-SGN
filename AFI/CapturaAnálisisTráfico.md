@@ -1,6 +1,6 @@
 <h1 align="center">Captura y Análisis de Tráfico de Red en Conexiones HTTP</h1>
 
-![Imagen Presentación](#)
+![Imagen Presentación](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/images/bannerPortada.png)
 
 ***Fecha:*** 03 de noviembre de 2025
 <br>***Autor***: Sergio González
