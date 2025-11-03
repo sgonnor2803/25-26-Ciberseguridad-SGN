@@ -86,7 +86,7 @@ En este apartado vamos a simular una sesión de usuario en un sitio web de prueb
 
 En este apartado analizaremos el tráfico HTTP capturado, identificando las solicitudes POST y los datos transmitidos.
 
-- Para empezar, podemos ver diferentes paquetes HTTP de dicha página.
+- Podemos ver que Wireshark ha capturado varias peticiones HTTP de la página, incluyendo solicitudes GET para cargar recursos y el POST del formulario. Esto nos permite entender cómo se transmite la información entre el navegador y el servidor.
 
 ![Imágen Captura Tráfico 11](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/images/capturaAn%C3%A1lisisTr%C3%A1fico11.png)
 
@@ -99,3 +99,5 @@ En este apartado analizaremos el tráfico HTTP capturado, identificando las soli
 ## 5. ***Conclusiones***
 
 En esta práctica hemos capturado y analizado el tráfico HTTP de un sitio web de prueba. Pudimos observar que los datos enviados en el formulario, como usuario y contraseña, se transmiten en texto plano, lo que supone un riesgo en redes no seguras.
+
+La actividad nos permitió aprender a usar Wireshark, aplicar filtros, identificar paquetes relevantes y seguir la conversación TCP completa. Además, nos hizo comprender la importancia de usar HTTPS y otras medidas de seguridad para proteger la información de los usuarios.
