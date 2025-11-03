@@ -65,7 +65,21 @@ En este apartado, se explicará como capturar tráfico HTTP mediante dicha herra
 ---
 ## 3. ***Conexión a un Sitio Web***
 
+En este apartado vamos a simular una sesión de usuario en un sitio web de prueba (***http://testphp.vulnweb.com/login.php***), rellenando y enviando un formulario mientras capturamos el tráfico HTTP con Wireshark. Seguiremos como lo hemos dejado en el apartado anterior.
 
+- Primero, al tener la herramienta Wireshark capturando todos los paquetes de la red, accederemos a la página que hemos menciona al principio de este apartado.
+
+![Imágen Captura Tráfico 8](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/images/capturaAn%C3%A1lisisTr%C3%A1fico8.png)
+
+![Imágen Captura Tráfico 9](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/images/capturaAn%C3%A1lisisTr%C3%A1fico9.png)
+> En la última imágen, se muestra que al acceder a la página ya se está realizando tráfico HTTP.
+
+- Luego, rellenamos el formulario, por ejemplo: **usuario:password123**, y lo enviamos para capturar dichos paquetes.
+
+![Imágen Captura Tráfico 10](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/images/capturaAn%C3%A1lisisTr%C3%A1fico10.png)
+
+![Imágen Captura Tráfico 11](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/images/capturaAn%C3%A1lisisTr%C3%A1fico11.png)
+> En la última imágen, se muestra todos los paquetes que hemos capturado mediante el acceso a la pagina web y al envio del formulario. En el siguiente apartado hablaremos sobre dichos paquetes.
 
 ---
 ## 4. ***Análisis del Tráfico Capturado***
