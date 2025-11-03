@@ -84,8 +84,18 @@ En este apartado vamos a simular una sesión de usuario en un sitio web de prueb
 ---
 ## 4. ***Análisis del Tráfico Capturado***
 
+En este apartado analizaremos el tráfico HTTP capturado, identificando las solicitudes POST y los datos transmitidos.
 
+- Para empezar, podemos ver diferentes paquetes HTTP de dicha página.
+
+![Imágen Captura Tráfico 11](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/images/capturaAn%C3%A1lisisTr%C3%A1fico11.png)
+
+- El paquete que más destaca seria el paquete POST que hicimos al enviar el formulario. Como podemos ver, los datos se muestran en texto plano, sin ningun tipo de cifrado. El contenido no está cifrado ya que el protocolo HTTP es inseguro y no cifra la información a la hora de transmitirlo por la red.
+
+![Imágen Captura Tráfico 12](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/images/capturaAn%C3%A1lisisTr%C3%A1fico12.png)
+> Esto muestra que los datos enviados por HTTP se transmiten en texto plano, lo que supone un riesgo si se hace en redes que no sean seguras.
 
 ---
-## 5. ***Informe y Conclusiones***
+## 5. ***Conclusiones***
 
+En esta práctica hemos capturado y analizado el tráfico HTTP de un sitio web de prueba. Pudimos observar que los datos enviados en el formulario, como usuario y contraseña, se transmiten en texto plano, lo que supone un riesgo en redes no seguras.
