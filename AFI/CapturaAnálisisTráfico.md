@@ -27,7 +27,7 @@ En primer lugar, procedemos a preparar el entorno de trabajo utilizando una máq
 sudo apt install wireshark
 ```
 
-![Imágen Captura Tráfico 1](#)
+![Imágen Captura Tráfico 1](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/images/capturaAn%C3%A1lisisTr%C3%A1fico1.png)
 
 - Comprobamos que se ha instalado correctamente el paquete, ejecutamos el siguiente comando:
 
@@ -35,14 +35,14 @@ sudo apt install wireshark
 wireshark --version
 ```
 
-![Imágen Captura Tráfico 2](#)
+![Imágen Captura Tráfico 2](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/images/capturaAn%C3%A1lisisTr%C3%A1fico2.png)
 > Como podemos ver, se ha instalado correctamente la versión 4.4.9. de Wireshark.
 
 - Por último, podemos ejecutar wireshark desde el siguiente comando:
 
-![Imágen Captura Tráfico 3](#)
+![Imágen Captura Tráfico 3](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/images/capturaAn%C3%A1lisisTr%C3%A1fico3.png)
 
-![Imágen Captura Tráfico 4](#)
+![Imágen Captura Tráfico 4](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/images/capturaAn%C3%A1lisisTr%C3%A1fico4.png)
 
 > El símbolo "**&**" nos permite ejecutar wireshark y ponerlo en segundo plano, para poder seguir usando la terminal.
 
