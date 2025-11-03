@@ -38,18 +38,29 @@ wireshark --version
 ![Imágen Captura Tráfico 2](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/images/capturaAn%C3%A1lisisTr%C3%A1fico2.png)
 > Como podemos ver, se ha instalado correctamente la versión 4.4.9. de Wireshark.
 
-- Por último, podemos ejecutar wireshark desde el siguiente comando:
+- Por último, podemos ejecutar Wireshark desde el siguiente comando:
 
 ![Imágen Captura Tráfico 3](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/images/capturaAn%C3%A1lisisTr%C3%A1fico3.png)
 
 ![Imágen Captura Tráfico 4](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/images/capturaAn%C3%A1lisisTr%C3%A1fico4.png)
 
-> El símbolo "**&**" nos permite ejecutar wireshark y ponerlo en segundo plano, para poder seguir usando la terminal.
+> El símbolo "**&**" nos permite ejecutar Wireshark y ponerlo en segundo plano, para poder seguir usando la terminal.
 
 ---
 ## 2. ***Captura de Tráfico***
 
+En este apartado, se explicará como capturar tráfico HTTP mediante dicha herramienta. Partimos desde el anterior apartado, con la herramienta ejecutada y lista para usarla.
 
+- Primero, elegiremos la interfaz que queremos utilizar para la captura de paquetes de dicha red. En mi caso elegire la interfaz eth0, que es la red que tiene acceso a internet.
+
+![Imágen Captura Tráfico 5](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/images/capturaAn%C3%A1lisisTr%C3%A1fico5.png)
+
+![Imágen Captura Tráfico 6](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/images/capturaAn%C3%A1lisisTr%C3%A1fico6.png)
+> En la última imágen, se muestra como la herramienta Wireshark captura todos los paquetes de la red que hemos elegido.
+
+- Por último, vamos a preparar la herramienta para el siguiente apartado. Vamos a filtra los paquetes de la red, mostrando solo los paquetes que sean por el protocolo HTTP. Para ello, utilizaremos lo filtros que nos proporciona Wireshark.
+
+![Imágen Captura Tráfico 7](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/images/capturaAn%C3%A1lisisTr%C3%A1fico7.png)
 
 ---
 ## 3. ***Conexión a un Sitio Web***
