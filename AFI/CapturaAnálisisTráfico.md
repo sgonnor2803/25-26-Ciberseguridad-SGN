@@ -13,7 +13,7 @@
 2. ***[Captura de Tráfico](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/CapturaAn%C3%A1lisisTr%C3%A1fico.md#2-captura-de-tr%C3%A1fico)***
 3. ***[Conexión a un Sitio Web](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/CapturaAn%C3%A1lisisTr%C3%A1fico.md#3-conexi%C3%B3n-a-un-sitio-web)***
 4. ***[Análisis del Tráfico Capturado](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/CapturaAn%C3%A1lisisTr%C3%A1fico.md#4-an%C3%A1lisis-del-tr%C3%A1fico-capturado)***
-5. ***[Informe y Conclusiones](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/CapturaAn%C3%A1lisisTr%C3%A1fico.md#5-informe-y-conclusiones)***
+5. ***[Conclusiones](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/CapturaAn%C3%A1lisisTr%C3%A1fico.md#5-conclusiones)***
 
 ---
 
