@@ -1,4 +1,4 @@
-<h1 align="center">RAG sobre la LPI. Casos prácticos.</h1>
+<h1 align="center">RAG sobre la LPI. Casos prácticos</h1>
 
 ![Imagen Presentación](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/NC/images/bannerPortada.jpg)
 
