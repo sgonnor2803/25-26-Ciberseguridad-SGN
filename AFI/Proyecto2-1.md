@@ -282,7 +282,29 @@ Get-FileHash FORENSIC_DISK.raw -Algorithm SHA1 | Out-File hashes_disk_raw.txt -A
 ---
 ## 4. ***Descripción de las Evidencias***
 
+En este proyecto se han obtenido tres evidencias principales de la máquina virtual. Cada una se recogió sin modificar el sistema original y siguiendo la cadena de custodia para poder demostrar que no se han alterado.
 
+---
+### 4.1. ***Imagen de Memoria RAM***
+---
+
+La memoria RAM se obtuvo directamente desde la máquina encendida usando el comando de VBoxManage (debugvm dumpvmcore). Este comando permite extraer la RAM en caliente sin ejecutar herramientas dentro del sistema.
+Como resultado se generó un archivo .raw que contiene el volcado completo de la memoria. Una vez obtenido, se calcularon sus hashes y se registró todo en la cadena de custodia.
+
+---
+### 4.2. ***Triaje del Sistema***
+---
+
+El triaje se realizó arrancando la máquina únicamente para ejecutar comandos de lectura. Se recogieron procesos activos, conexiones de red, configuración básica del sistema y otra información útil para un análisis inicial.
+Toda la salida de los comandos se envió a una carpeta compartida para evitar escribir en el disco de la máquina. Cada archivo generado se guardó como evidencia independiente y se documentaron sus hashes.
+
+---
+### 4.3. ***Imagen del Disco***
+---
+
+El disco original estaba en formato VMDK, por lo que primero se calcularon sus hashes para registrar su estado original.
+Después, el archivo se convirtió a formato RAW usando la herramienta QEMU (qemu-img), ya que este formato permite analizar el disco con herramientas forenses sin riesgo de modificarlo.
+La imagen RAW resultante también se registró como evidencia con sus hashes correspondientes.
 
 ---
 ## 5. ***Cadena de Custodia***
