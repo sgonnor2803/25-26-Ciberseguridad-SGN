@@ -309,7 +309,97 @@ La imagen RAW resultante también se registró como evidencia con sus hashes cor
 ---
 ## 5. ***Cadena de Custodia***
 
+### 1. Evidencia: Memoria RAM
 
+**ID evidencia:** E-01-RAM  
+**Tipo:** Volcado de memoria RAM (`.raw`)
+
+**Cuándo se descubrió:**  
+15/11/2025 a las 11:14, al revisar la snapshot en caliente.
+
+**Dónde se obtuvo:**  
+Equipo de análisis, extrayendo el volcado desde los archivos de la snapshot.
+
+**Quién la recolectó:**  
+Sergio González Noria
+
+**Quién la custodia actualmente:**  
+Sergio González Noria
+
+**Archivos generados:**  
+- `memoria.raw`
+
+**Hashes generados:**  
+- **MD5:** *573D9F1A4335198FCB392BBB1FAF6900*  
+- **SHA256:** *95398E1C2BF7BF0406624C9A29B3F795E168479BFEE20368F18D9FD02E7D7452*  
+- **SHA1:** *7FAF670423CC9ED41EACEB04D845F76D23A01958*  
+
+**Observaciones:**  
+No se ejecutó software dentro de la máquina investigada.
+
+---
+
+### 2. Evidencia: Triaje del Sistema
+
+**ID evidencia:** E-02-TRIAJE  
+**Tipo:** Archivos con información del sistema obtenida mediante comandos nativos.
+
+**Cuándo se descubrió:**  
+15/11/2025 a las 13:42, durante el arranque controlado para recopilar información básica del sistema.
+
+**Dónde se obtuvo:**  
+Dentro de la máquina Windows 7, enviando la salida a una carpeta compartida (sin escribir en el disco original).
+
+**Quién la recolectó:**  
+Sergio González Noria
+
+**Quién la custodia actualmente:**  
+Sergio González Noria
+
+**Archivos generados:**  
+- `tasklist.txt`  
+- `netstat.txt`  
+- `ipconfig.txt`
+- `systeminfo.txt`
+- `dir_users.txt`  
+- `dir_programfiles.txt`  
+- `dir_startup.txt`
+
+**Hashes generados:**  
+Guardados en los diferentes `hashes_... .txt` (MD5, SHA256 y SHA1 de cada archivo).
+
+**Observaciones:**  
+Todos los comandos fueron de solo lectura.
+
+---
+
+### 3. Evidencia: Imagen del Disco
+
+**ID evidencia:** E-03-DISCO  
+**Tipo:** Imagen forense del disco convertida a `.raw`.
+
+**Cuándo se descubrió:**  
+15/11/2025 a las 15:01, al revisar el archivo `FORENSIC_10_disk0.vmdk` incluido en la exportación.
+
+**Dónde se obtuvo:**  
+Equipo de análisis, convirtiendo el VMDK con `qemu-img` sin montarlo.
+
+**Quién la recolectó:**  
+Sergio González Noria
+
+**Quién la custodia actualmente:**  
+Sergio González Noria
+
+**Archivos generados:**  
+- `FORENSIC_DISK.raw`
+
+**Hashes generados:**  
+- **MD5:** *FFD0761967E749AB89E534F07A1B9A1A*  
+- **SHA256:** *65BCFDEF3F90051F86476B3C714B95EED76015C2E5B3868997F564581A2C2BC0*  
+- **SHA1:** *905E55CDD35FFD602AA8F8282B9AFFA649E86A11*  
+
+**Observaciones:**  
+La imagen no se montó para evitar cualquier modificación del contenido.
 
 ---
 ## 6. ***Almacenamiento de las Evidencias***
