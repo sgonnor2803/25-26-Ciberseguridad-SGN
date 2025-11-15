@@ -404,7 +404,57 @@ La imagen no se montó para evitar cualquier modificación del contenido.
 ---
 ## 6. ***Almacenamiento de las Evidencias***
 
+Todas las evidencias obtenidas se guardaron en la carpeta **`EVIDENCIAS_FORENSIC_10`**, ubicada en el equipo de análisis. El objetivo fue mantenerlas organizadas y evitar cualquier modificación accidental de los archivos originales. Para ello, se separaron claramente las evidencias, sus hashes y los archivos relacionados con la adquisición.
 
+La estructura final quedó de la siguiente manera:
+
+**EVIDENCIAS_FORENSIC_10**<br>
+│── dir_programfiles.txt<br>
+│── dir_startup.txt<br>
+│── dir_users.txt<br>
+│── FORENSIC_10.tar<br>
+│── hashes_dir_programfiles.txt<br>
+│── hashes_dir_startup.txt<br>
+│── hashes_dir_users.txt<br>
+│── hashes_ipconfig.txt<br>
+│── hashes_memoria.txt<br>
+│── hashes_netstat.txt<br>
+│── hashes_systeminfo.txt<br>
+│── hashes_tasklist.txt<br>
+│── ipconfig.txt<br>
+│── memoria.raw<br>
+│── netstat.txt<br>
+│── systeminfo.txt<br>
+│── tasklist.txt<br>
+│<br>
+└── **FORENSIC_10**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;│── FORENSIC_10.mf<br>
+&nbsp;&nbsp;&nbsp;&nbsp;│── FORENSIC_10.ovf<br>
+&nbsp;&nbsp;&nbsp;&nbsp;│── FORENSIC_10_disk0.vmdk<br>
+&nbsp;&nbsp;&nbsp;&nbsp;│── FORENSIC_10_file0.nvram<br>
+&nbsp;&nbsp;&nbsp;&nbsp;│── FORENSIC_DISK.raw<br>
+&nbsp;&nbsp;&nbsp;&nbsp;└── hashes_disk_raw.txt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;└── hashes_disk_vmdk.txt<br>
+
+### Organización de las evidencias
+
+- **Memoria RAM:**  
+  El archivo `memoria.raw` y su archivo de hashes correspondiente se guardaron en la carpeta principal. Esto permite verificar su integridad en cualquier momento.
+
+- **Triaje del sistema:**  
+  Los archivos generados mediante comandos nativos (`tasklist`, `netstat`, `ipconfig`, `systeminfo`, etc.) se almacenaron junto con sus hashes. Estos archivos se obtuvieron sin escribir en el disco de la máquina investigada.
+
+- **Imagen del disco:**  
+  La carpeta `FORENSIC_10` contiene el archivo original del disco en formato VMDK, la copia forense en formato RAW y sus respectivos archivos de hashes. De este modo se mantiene clara la separación entre la evidencia original y la copia utilizada para el análisis.
+
+### Integridad de las evidencias
+
+Para cada archivo se generaron las huellas digitales **MD5, SHA256 y SHA1**, almacenadas en documentos individuales. Esto permite comprobar la integridad y garantizar que ninguna evidencia ha sido modificada tras su adquisición.
+
+### Custodia y acceso
+
+Toda la carpeta se encuentra en el equipo de análisis bajo la custodia del responsable del caso.  
+Las evidencias originales no se modifican; cualquier revisión se realiza sobre copias de trabajo para mantener la integridad de la información.
 
 ---
 ## 7. ***Conclusiones***
