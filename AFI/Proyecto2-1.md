@@ -73,7 +73,94 @@ Los hashes obtenidos se guardaron en un archivo ***hashes_memoria.txt*** para te
 ### 3.2. ***Triaje***
 ---
 
-Para el triaje se encendió la máquina y solo se usaron comandos nativos y de lectura, como tasklist, netstat, ipconfig o systeminfo. Toda la información se guardó en un medio externo para no escribir nada en el disco comprometido. Esto permitió ver de forma rápida qué procesos, conexiones y configuraciones tenía el sistema.
+Para el triaje se arrancó la máquina comprometida, pero solo para obtener información básica del sistema sin modificar nada. No se instaló ninguna herramienta ni se ejecutaron programas externos; solo se usaron comandos nativos de Windows que funcionan en modo lectura.
+
+Los comandos que se utilizaron fueron:
+
+- ***tasklist -->*** para ver procesos activos
+- ***netstat -nao -->*** conexiones de red y puertos
+- ***ipconfig /all -->*** información de red
+- ***systeminfo -->*** información general del sistema
+- ***dir /s en rutas clave -->*** estructura de archivos
+- ***wmic useraccount get name,sid -->*** usuarios del sistema
+
+Cada comando se ejecutó redirigiendo la salida a una memoria USB o carpeta externa.
+
+- Primero, montamos la carpeta compartida en la máquina virtual. Para ello, ejecutamos el siguiente comando:
+
+```bash
+net use Z: \\DESKTOP-F44P71J\Evidencias_FORENSIC_10
+```
+
+<img width="798" height="707" alt="image" src="https://github.com/user-attachments/assets/05e2338f-08ce-4f5f-9d2d-5db5bd3cd6fe" /><br>
+> En esta imagen, nos muestra como se ha montado correctamente el dispositivo en local, mediante las credenciales del host remoto.
+
+<img width="800" height="704" alt="image" src="https://github.com/user-attachments/assets/c82850bc-d1d4-4644-8c7b-4387c2403266" />
+
+- Ahora, ya podemos empezar a recopilar toda la información de la máquina. Vamos a empezar por la captura de los procesos activos:
+
+```bash
+tasklist > Z:\tasklist.txt
+```
+
+<img width="801" height="253" alt="image" src="https://github.com/user-attachments/assets/9b24e57f-1d7f-4d42-9f93-b4bc1ce7122c" />
+<img width="1001" height="589" alt="image" src="https://github.com/user-attachments/assets/4383df1a-9965-4185-afcc-2c09f9266c4a" />
+
+- Capturamos la información de las conexiones de red y puertos:
+
+```bash
+netstat -nao > Z:\netstat.txt
+```
+
+<img width="800" height="284" alt="image" src="https://github.com/user-attachments/assets/c54febfc-286e-4a77-93df-cfd8ee0528f2" />
+<img width="1001" height="587" alt="image" src="https://github.com/user-attachments/assets/d43be08b-2402-43a8-a519-240919361f37" />
+
+- Capturamos la información de la red:
+
+```bash
+ipconfig /all > Z:\ipconfig.txt
+```
+
+<img width="798" height="287" alt="image" src="https://github.com/user-attachments/assets/1166e457-5339-485d-b50c-db883fd22f30" />
+<img width="998" height="590" alt="image" src="https://github.com/user-attachments/assets/0045ede2-4112-4e89-9011-d715ffce3022" />
+
+- Capturamos la información general del sistema:
+
+```bash
+systeminfo > Z:\systeminfo.txt
+```
+
+<img width="799" height="273" alt="image" src="https://github.com/user-attachments/assets/98aaa333-e353-496f-90c3-3206aa370411" />
+<img width="1000" height="587" alt="image" src="https://github.com/user-attachments/assets/4dc1688d-48fb-42cd-badc-977fa291f622" />
+
+- Capturamos la información de las estructuras claves como las siguientes carpetas:
+  - Carpeta del usuario comprometido:
+
+```bash
+dir "C:\Users\Administrador" /s > Z:\dir_users.txt
+```
+
+<img width="801" height="274" alt="image" src="https://github.com/user-attachments/assets/8ac89b77-2230-4316-b93d-701bc48398c2" />
+<img width="1001" height="588" alt="image" src="https://github.com/user-attachments/assets/a3641e48-bd9b-4996-b07b-b53312d783e7" />
+
+  - Carpetas Program Files y Program Files (x86):
+
+```bash
+dir "C:\Program Files" /s > Z:\dir_programfiles.txt
+dir "C:\Program Files (x86)" /s >> Z:\dir_programfiles.txt
+```
+
+<img width="801" height="299" alt="image" src="https://github.com/user-attachments/assets/8b9bffb7-a863-4601-a995-bbe11a235ab4" />
+<img width="1000" height="587" alt="image" src="https://github.com/user-attachments/assets/4474dee0-95c9-4fe5-9fb1-1f4f9d68a74b" />
+
+  - Carpeta Inicio automático
+
+```bash
+dir "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup" /s > Z:\dir_startup.txt
+```
+
+<img width="800" height="272" alt="image" src="https://github.com/user-attachments/assets/ca01eaeb-c062-456a-b536-82d505a5820d" />
+<img width="997" height="589" alt="image" src="https://github.com/user-attachments/assets/d3f40a5c-d6f7-4960-bb59-86db995962ce" />
 
 
 
