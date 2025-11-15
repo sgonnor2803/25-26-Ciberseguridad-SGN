@@ -1,4 +1,4 @@
-<h1 align="center">Proyecto 2.1: Incident Investigation</h1>
+<h1 align="center">Proyecto 2.1 - Incident Investigation</h1>
 
 ![Imagen Presentación](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/AFI/images/bannerPortada.png)
 
@@ -33,6 +33,27 @@ Una vez recogidas, las evidencias se almacenaron por separado registrando fechas
 
 ---
 ## 3. ***Recolección de Evidencias***
+
+Para recoger las evidencias de la máquina comprometida se siguió un proceso simple y ordenado, intentando no modificar nada del sistema original. La recolección se basó en tres partes: la memoria RAM, el triaje y el disco.
+
+### 3.1. ***Memoria RAM***
+---
+
+La memoria se obtuvo a partir de una snapshot en caliente. Esta snapshot guarda el estado completo de la máquina en ese momento, incluyendo el archivo donde está la RAM. Desde esos archivos se extrajo la memoria para poder analizarla desde fuera, sin tocar la máquina.
+
+
+
+### 3.2. ***Triaje***
+---
+
+Para el triaje se encendió la máquina y solo se usaron comandos nativos y de lectura, como tasklist, netstat, ipconfig o systeminfo. Toda la información se guardó en un medio externo para no escribir nada en el disco comprometido. Esto permitió ver de forma rápida qué procesos, conexiones y configuraciones tenía el sistema.
+
+
+
+### 3.2. ***Disco de la máquina***
+---
+
+El disco se obtuvo usando el archivo VMDK incluido en la exportación de la máquina. Ese archivo se convirtió a un formato forense que se puede abrir con herramientas como FTK Imager. Todo se hizo desde el equipo host para evitar modificar el disco real de la máquina virtual.
 
 
 
