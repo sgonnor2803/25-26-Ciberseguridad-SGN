@@ -459,3 +459,8 @@ Las evidencias originales no se modifican; cualquier revisión se realiza sobre 
 ---
 ## 7. ***Conclusiones***
 
+La adquisición de evidencias se realizó siguiendo una metodología ordenada y evitando en todo momento modificar la máquina comprometida. Se obtuvieron correctamente los tres elementos principales necesarios para el análisis forense: el volcado de memoria RAM, el triaje del sistema mediante comandos de solo lectura y la imagen completa del disco convertida a formato RAW.
+
+Todas las evidencias se guardaron de forma estructurada, junto con sus respectivos hashes para garantizar su integridad. Además, se documentó quién las obtuvo, en qué momento y dónde se almacenaron, manteniendo en todo momento la cadena de custodia.
+
+Gracias a esta preparación, ahora es posible continuar con el análisis del incidente con garantías, trabajando únicamente sobre copias de las evidencias y manteniendo intactos los archivos originales. Esto permite avanzar a la siguiente fase del proyecto: investigar qué vulnerabilidad fue explotada, qué proceso apareció tras el compromiso y qué herramienta utilizó el atacante dentro del sistema.
