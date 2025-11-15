@@ -106,6 +106,16 @@ tasklist > Z:\tasklist.txt
 <img width="801" height="253" alt="image" src="https://github.com/user-attachments/assets/9b24e57f-1d7f-4d42-9f93-b4bc1ce7122c" />
 <img width="1001" height="589" alt="image" src="https://github.com/user-attachments/assets/4383df1a-9965-4185-afcc-2c09f9266c4a" />
 
+Y calculamos los hashes para la integridad de este archivos:
+
+```bash
+Get-FileHash tasklist.txt -Algorithm MD5 | Out-File hashes_tasklist.txt -Append
+Get-FileHash tasklist.txt -Algorithm SHA256 | Out-File hashes_tasklist.txt -Append
+Get-FileHash tasklist.txt -Algorithm SHA1 | Out-File hashes_tasklist.txt -Append
+```
+
+<img width="1279" height="516" alt="image" src="https://github.com/user-attachments/assets/8f4de245-715a-49a1-926a-9a025eecb9ba" />
+
 - Capturamos la información de las conexiones de red y puertos:
 
 ```bash
@@ -114,6 +124,16 @@ netstat -nao > Z:\netstat.txt
 
 <img width="800" height="284" alt="image" src="https://github.com/user-attachments/assets/c54febfc-286e-4a77-93df-cfd8ee0528f2" />
 <img width="1001" height="587" alt="image" src="https://github.com/user-attachments/assets/d43be08b-2402-43a8-a519-240919361f37" />
+
+Y calculamos los hashes para la integridad de este archivos:
+
+```bash
+Get-FileHash netstat.txt -Algorithm MD5 | Out-File hashes_netstat.txt -Append
+Get-FileHash netstat.txt -Algorithm SHA256 | Out-File hashes_netstat.txt -Append
+Get-FileHash netstat.txt -Algorithm SHA1 | Out-File hashes_netstat.txt -Append
+```
+
+<img width="1274" height="509" alt="image" src="https://github.com/user-attachments/assets/7965340a-86c1-4b0d-b275-84ecccf6ec3b" />
 
 - Capturamos la información de la red:
 
@@ -124,6 +144,16 @@ ipconfig /all > Z:\ipconfig.txt
 <img width="798" height="287" alt="image" src="https://github.com/user-attachments/assets/1166e457-5339-485d-b50c-db883fd22f30" />
 <img width="998" height="590" alt="image" src="https://github.com/user-attachments/assets/0045ede2-4112-4e89-9011-d715ffce3022" />
 
+Y calculamos los hashes para la integridad de este archivos:
+
+```bash
+Get-FileHash ipconfig.txt -Algorithm MD5 | Out-File hashes_ipconfig.txt -Append
+Get-FileHash ipconfig.txt -Algorithm SHA256 | Out-File hashes_ipconfig.txt -Append
+Get-FileHash ipconfig.txt -Algorithm SHA1 | Out-File hashes_ipconfig.txt -Append
+```
+
+<img width="1278" height="516" alt="image" src="https://github.com/user-attachments/assets/00cb41e7-a896-4712-81c7-e01dea0f8eb0" />
+
 - Capturamos la información general del sistema:
 
 ```bash
@@ -132,6 +162,16 @@ systeminfo > Z:\systeminfo.txt
 
 <img width="799" height="273" alt="image" src="https://github.com/user-attachments/assets/98aaa333-e353-496f-90c3-3206aa370411" />
 <img width="1000" height="587" alt="image" src="https://github.com/user-attachments/assets/4dc1688d-48fb-42cd-badc-977fa291f622" />
+
+Y calculamos los hashes para la integridad de este archivos:
+
+```bash
+Get-FileHash systeminfo.txt -Algorithm MD5 | Out-File hashes_systeminfo.txt -Append
+Get-FileHash systeminfo.txt -Algorithm SHA256 | Out-File hashes_systeminfo.txt -Append
+Get-FileHash systeminfo.txt -Algorithm SHA1 | Out-File hashes_systeminfo.txt -Append
+```
+
+<img width="1277" height="519" alt="image" src="https://github.com/user-attachments/assets/7411a496-ee9d-46d7-88b1-90e1752c054d" />
 
 - Capturamos la información de las estructuras claves como las siguientes carpetas:
   - Carpeta del usuario comprometido:
@@ -143,6 +183,16 @@ dir "C:\Users\Administrador" /s > Z:\dir_users.txt
 <img width="801" height="274" alt="image" src="https://github.com/user-attachments/assets/8ac89b77-2230-4316-b93d-701bc48398c2" />
 <img width="1001" height="588" alt="image" src="https://github.com/user-attachments/assets/a3641e48-bd9b-4996-b07b-b53312d783e7" />
 
+Y calculamos los hashes para la integridad de este archivos:
+
+```bash
+Get-FileHash dir_users.txt -Algorithm MD5 | Out-File hashes_dir_users.txt -Append
+Get-FileHash dir_users.txt -Algorithm SHA256 | Out-File hashes_dir_users.txt -Append
+Get-FileHash dir_users.txt -Algorithm SHA1 | Out-File hashes_dir_users.txt -Append
+```
+
+<img width="1273" height="521" alt="image" src="https://github.com/user-attachments/assets/705f54e7-663d-4a94-bfa6-f58cb021de05" />
+
   - Carpetas Program Files y Program Files (x86):
 
 ```bash
@@ -153,6 +203,16 @@ dir "C:\Program Files (x86)" /s >> Z:\dir_programfiles.txt
 <img width="801" height="299" alt="image" src="https://github.com/user-attachments/assets/8b9bffb7-a863-4601-a995-bbe11a235ab4" />
 <img width="1000" height="587" alt="image" src="https://github.com/user-attachments/assets/4474dee0-95c9-4fe5-9fb1-1f4f9d68a74b" />
 
+Y calculamos los hashes para la integridad de este archivos:
+
+```bash
+Get-FileHash dir_programfiles.txt -Algorithm MD5 | Out-File hashes_dir_programfiles.txt -Append
+Get-FileHash dir_programfiles.txt -Algorithm SHA256 | Out-File hashes_dir_programfiles.txt -Append
+Get-FileHash dir_programfiles.txt -Algorithm SHA1 | Out-File hashes_dir_programfiles.txt -Append
+```
+
+<img width="1409" height="531" alt="image" src="https://github.com/user-attachments/assets/65400616-bf63-4cfa-98ca-b00ee1ee43ff" />
+
   - Carpeta Inicio automático
 
 ```bash
@@ -162,7 +222,15 @@ dir "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup" /s > Z:\dir_s
 <img width="800" height="272" alt="image" src="https://github.com/user-attachments/assets/ca01eaeb-c062-456a-b536-82d505a5820d" />
 <img width="997" height="589" alt="image" src="https://github.com/user-attachments/assets/d3f40a5c-d6f7-4960-bb59-86db995962ce" />
 
+Y calculamos los hashes para la integridad de este archivos:
 
+```bash
+Get-FileHash dir_startup.txt -Algorithm MD5 | Out-File hashes_dir_startup.txt -Append
+Get-FileHash dir_startup.txt -Algorithm SHA256 | Out-File hashes_dir_startup.txt -Append
+Get-FileHash dir_startup.txt -Algorithm SHA1 | Out-File hashes_dir_startup.txt -Append
+```
+
+<img width="1329" height="516" alt="image" src="https://github.com/user-attachments/assets/389d02c2-970a-4587-9f42-087af0c0e0d8" />
 
 ---
 ### 3.2. ***Disco de la máquina***
