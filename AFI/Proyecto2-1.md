@@ -238,7 +238,46 @@ Get-FileHash dir_startup.txt -Algorithm SHA1 | Out-File hashes_dir_startup.txt -
 
 El disco se obtuvo usando el archivo VMDK incluido en la exportación de la máquina. Ese archivo se convirtió a un formato forense que se puede abrir con herramientas como FTK Imager. Todo se hizo desde el equipo host para evitar modificar el disco real de la máquina virtual.
 
+- Primero, vamos a obtener el disco de la máquina virtual. Para ello, al archivo compartido de la máquina, hacemos una copia del archivo y cambiamos su extensión por .tar. Al cambiar su extensión, podemos extraer sus archivos y obtener el archivo .vmdk.
 
+<img width="1088" height="378" alt="image" src="https://github.com/user-attachments/assets/cddbf7fe-ba3a-47ac-ae4a-6031a0791044" />
+<img width="1099" height="378" alt="image" src="https://github.com/user-attachments/assets/c29952f0-ee46-4958-8544-0ca26533fbba" />
+
+Obtenemos los hashes para verificar la integridad del archivo:
+```bash
+Get-FileHash FORENSIC_10_disk0.vmdk -Algorithm MD5 | Out-File hashes_disk_vmdk.txt -Append
+Get-FileHash FORENSIC_10_disk0.vmdk -Algorithm SHA256 | Out-File hashes_disk_vmdk.txt -Append
+Get-FileHash FORENSIC_10_disk0.vmdk -Algorithm SHA1 | Out-File hashes_disk_vmdk.txt -Append
+```
+
+<img width="1632" height="532" alt="image" src="https://github.com/user-attachments/assets/1d2fba31-f9df-4005-9d7a-e5877b5dfb8c" />
+
+- Ahora, vamos a convertir el archivo .vmdk en un archivo .raw para poder analizar el contenido del disco ya que es un formato compatible con todas las herramientas forenses.
+
+```bash
+"C:\Program Files\qemu\qemu-img.exe" convert -p -O raw ".\FORENSIC_10_disk0.vmdk" "FORENSIC_DISK.raw"
+```
+
+<img width="1630" height="185" alt="image" src="https://github.com/user-attachments/assets/358b31b6-78f2-49bd-971b-ea5069e08cd0" />
+<img width="1132" height="452" alt="image" src="https://github.com/user-attachments/assets/e05d344a-95be-4dd6-b197-275b1f63d0fa" />
+
+Obtenemos los hashes para verificar la integridad del archivo:
+```bash
+Get-FileHash FORENSIC_DISK.raw -Algorithm MD5 | Out-File hashes_disk_raw.txt -Append
+Get-FileHash FORENSIC_DISK.raw -Algorithm SHA256 | Out-File hashes_disk_raw.txt -Append
+Get-FileHash FORENSIC_DISK.raw -Algorithm SHA1 | Out-File hashes_disk_raw.txt -Append
+```
+
+<img width="1629" height="525" alt="image" src="https://github.com/user-attachments/assets/35dd6a59-33f8-4857-a473-dcc3a027f48d" />
+
+- Conprobamos que se puede utilizar la copia del disco el .raw en el software forense llamado ***FTK Imager***. Para ello, accedemos al apartado ***File --> Add Evidence item...*** :
+
+<img width="965" height="225" alt="image" src="https://github.com/user-attachments/assets/f9af0893-b3b4-4b00-af72-30410859967c" />
+<img width="661" height="478" alt="image" src="https://github.com/user-attachments/assets/3802d1f0-8425-4d70-9fcd-cbe64adff89d" />
+<img width="629" height="478" alt="image" src="https://github.com/user-attachments/assets/733bd3e1-dbe2-4806-b2ca-7ebd0d3c5f3c" />
+<img width="1008" height="723" alt="image" src="https://github.com/user-attachments/assets/7032ed7f-507a-4f92-bcc7-5db61e1093c0" /><br><br>
+
+> Como podemos ver, el archivo .raw es accesible y podemos analizarlo mediante el software forense FTK Imager.
 
 ---
 ## 4. ***Descripción de las Evidencias***
