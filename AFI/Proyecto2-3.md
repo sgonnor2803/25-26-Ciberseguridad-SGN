@@ -43,10 +43,14 @@ Durante el análisis reuní tres bloques principales de evidencias: la memoria R
 Se extrajo usando la herramienta dumpvmcore de VirtualBox, que permite sacar el volcado directamente desde el host. Con esto conseguí un fichero .raw con el contenido completo de la RAM en el momento de la captura.
 Esta evidencia es importante porque normalmente es donde aparece el malware en ejecución, procesos sospechosos o restos del exploit.
 
+<img width="1018" height="284" alt="image" src="https://github.com/user-attachments/assets/8aeaaf97-e330-4b17-9853-c324256ee066" />
+
 ### 3.2. ***Triaje del sistema***
 
 Para el triaje se encendió la máquina pero únicamente se usaron comandos de solo lectura (tasklist, netstat, ipconfig, systeminfo, etc.). Toda la información se guardó en una carpeta compartida para evitar escribir en el disco original.
 En este grupo de evidencias fue donde apareció el proceso raro (KzcmVNSNkYkueQf.exe) y donde también recogí información sobre la red y el sistema.
+
+<img width="1038" height="557" alt="image" src="https://github.com/user-attachments/assets/e6cdefc0-eaaf-4343-957f-1f8a56b75d4f" />
 
 ### 3.3. ***Imagen del disco***
 
@@ -54,6 +58,8 @@ La copia del disco se obtuvo convirtiendo el archivo .vmdk original a .raw usand
 Dentro de esta evidencia fue donde encontré el script crea_user.py, que prácticamente confirma la explotación del servidor Easy File Sharing.
 
 Todas las evidencias se guardaron con sus hashes, fechas y responsable, de forma organizada, y siempre manteniendo la estructura necesaria para consultarlas de manera independiente en el análisis posterior.
+
+<img width="1027" height="396" alt="image" src="https://github.com/user-attachments/assets/6c9f5f5d-77e8-4023-8be3-f395a8275759" />
 
 ---
 ## 4. ***Hallazgos principales del incidente***
