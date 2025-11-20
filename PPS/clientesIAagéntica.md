@@ -63,7 +63,32 @@ npm -v
 ---
 ## 4. ***Instalación de la herramienta elegida***
 
+OpenCode se instala desde npm mediante el paquete ***opencode-ai***, por lo que una vez configurado Node y npm en el sistema se puede instalar directamente.
 
+- Para instalar Opencode ejecutamos el siguiente comando:
+
+```bash
+npm i -g opencode-ai
+```
+
+<img width="425" height="147" alt="image" src="https://github.com/user-attachments/assets/732eb5a2-5fc8-478b-afe5-87b9fdd2c9c1" />
+
+- Comprobamos que se ha instalado correctamente Opencode. Para ello, ejecutamos el siguiente comando:
+
+```bash
+opencode --version
+```
+
+<img width="410" height="132" alt="image" src="https://github.com/user-attachments/assets/8311a6df-3e25-4ebf-ae43-4a02911a2d69" />
+
+Y para abrir Opencode, ejecutamos el siguiente comando:
+
+```bash
+opencode
+```
+
+<img width="335" height="84" alt="image" src="https://github.com/user-attachments/assets/cbc13f3c-a515-49a0-941a-a5d9cf2f02c4" />
+<img width="1099" height="634" alt="image" src="https://github.com/user-attachments/assets/15425f3c-7a3d-46e5-9bbf-0626e5ae055d" />
 
 ---
 ## 5. ***Configuración de los modelos recomendados***
@@ -82,6 +107,7 @@ npm -v
 
 ---
 ## 8. ***Conclusiones***
+
 
 
 
