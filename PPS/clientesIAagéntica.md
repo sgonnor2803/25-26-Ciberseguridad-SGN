@@ -21,16 +21,16 @@
 ---
 ## 1. ***Introducción***
 
-En este proyecto se utiliza ***Opencode*** como herramienta de IA agéntica. Su integración con Node y su compatibilidad con ***Ollama Cloud*** facilitan el uso de modelos de pesos abiertos. Esto permite trabajar con todos los modelos recomendados para este tipo de tareas: ***Sonnet4.5, GPT 5.1, Gemini 3, Kimi-K2, Minimax-M2 y Qwen3-Coder***.
-El objetivo es dejar Opencode configurado para poder usar cualquiera de estos modelos según las necesidades del entorno o del ejercicio.
+El proyecto consiste en montar un entorno para trabajar con ***OpenCode*** como herramienta de IA agéntica. Se prepara Node con nvm, se conecta OpenCode a ***Ollama Cloud*** y se activa ***MCP*** para poder usar acciones externas. También se dejan configurados todos los modelos recomendados en 2025 (***Sonnet4.5, GPT5.1, Gemini3, Kimi-K2, Minimax-M2 y Qwen3-Coder***) para poder usarlos desde la misma herramienta sin complicaciones.
 
 ---
-## 2. ***Elección de la herramienta de IA agéntica***
+## 2. ***Selección de la herramienta de IA agéntica***
 
-
+La herramienta elegida para este proyecto es ***OpenCode***, por su compatibilidad con ***Ollama Cloud***, soporte de MCP y facilidad para trabajar con múltiples modelos de código abiertos. OpenCode permite que los agentes ejecuten acciones externas de forma segura y está bien documentada, lo que facilita su instalación y configuración en el entorno de pruebas.
 
 ---
 ## 3. ***Instalación del entorno***
+
 
 
 ---
@@ -55,5 +55,4 @@ El objetivo es dejar Opencode configurado para poder usar cualquiera de estos mo
 
 ---
 ## 8. ***Conclusiones***
-
 
