@@ -21,20 +21,15 @@
 ---
 ## 1. ***Introducción***
 
-El proyecto consiste en montar un entorno de trabajo usando OpenCode como herramienta de IA agéntica. Para ello se prepara Node mediante nvm, se instala OpenCode y se deja configurado para trabajar con distintos modelos.
-Además, se incluye el uso de ***Ollama Cloud*** para probar varios de los modelos recomendados en 2025 (***GPT5.1, Gemini3, Kimi-K2, Minimax-M2 y Qwen3-Coder***), aunque no todos puedan integrarse directamente dentro de OpenCode.
-También se habilita el soporte para MCP, que permite que los agentes puedan realizar acciones externas como navegar o interactuar con otros servicios.
+El proyecto consiste en montar un entorno para trabajar con ***OpenCode*** como herramienta de IA agéntica. Se prepara Node con nvm, se conecta OpenCode a ***Ollama Cloud*** y se activa ***MCP*** para poder usar acciones externas. También se dejan configurados todos los modelos recomendados en 2025 (***Sonnet4.5, GPT5.1, Gemini3, Kimi-K2, Minimax-M2 y Qwen3-Coder***) para poder usarlos desde la misma herramienta sin complicaciones.
 
 ---
 ## 2. ***Selección de la herramienta de IA agéntica***
 
-Se elige ***OpenCode*** como herramienta de IA agéntica porque permite trabajar con agentes locales, tiene una instalación sencilla y ofrece compatibilidad con modelos abiertos. Además, se integra bien con flujos de trabajo basados en Node y permite usar MCP para extender las capacidades del agente.
-Aunque no todos los modelos recomendados pueden cargarse directamente dentro de OpenCode, sí se pueden combinar con servicios externos como ***Ollama Cloud***, lo que permite cubrir el uso de todos los modelos
+La herramienta elegida para este proyecto es ***OpenCode***, por su compatibilidad con ***Ollama Cloud***, soporte de MCP y facilidad para trabajar con múltiples modelos de código abiertos. OpenCode permite que los agentes ejecuten acciones externas de forma segura y está bien documentada, lo que facilita su instalación y configuración en el entorno de pruebas.
 
 ---
 ## 3. ***Instalación del entorno***
-
-Para preparar el entorno se instala nvm en Windows y, a partir de ahí, la versión de Node necesaria para ejecutar OpenCode.
 
 - Primero, vamos a descargar nvm desde el siguiente ***[enlace](https://github.com/coreybutler/nvm-windows/releases)***.
 
@@ -98,45 +93,32 @@ opencode
 ---
 ## 5. ***Configuración de los modelos recomendados***
 
-Se van a utilizar los siguientes modelos: ***GPT5.1, Gemini3, Kimi-K2, Minimax-M2 y Qwen3-Coder***.
-El modelo ***GPT5*** se configura dentro de OpenCode como modelo interno que siempre funciona y no necesita claves: opencode/gpt-5-nano.
+Se van a configurar estos modelos: GPT5, Sonnet4.5, Qwen3-Coder, Gemini3, Kimi-K2 y Minimax-M2.
+Los modelos internos que funcionan sin claves es opencode/gpt-5-nano y opencode/claude-sonnet-4-5; los demás se apuntan a Ollama Cloud.
+
+Para ello, configuramos el archivo ***opencode.json*** donde se definirán los modelos que vamos a utilizar en Opencode.
+
+<img width="714" height="828" alt="image" src="https://github.com/user-attachments/assets/705fce70-e4e3-4623-b6e3-32c68d0766fe" />
+
+Ahora, podemos acceder a los diferentes modelos desde Opencode. Si queremos acceder directamente con el modelo a Opencode, ejecutaremos el siguiente comando (ejemplo kimi-k2):
 
 ```bash
-opencode --model opencode/gpt-5-nano
+opencode --model kimi-k2:1t-cloud
 ```
 
-<img width="822" height="100" alt="image" src="https://github.com/user-attachments/assets/d580e5e8-45b6-43a8-851c-074d5c0ee466" />
-<img width="1096" height="631" alt="image" src="https://github.com/user-attachments/assets/590e041d-3aa7-4181-a9c9-7bd9f104a31e" />
-
-El resto de modelos (***Gemini3, Kimi-K2, Minimax-M2 y Qwen3-Coder***) se utilizan mediante Ollama Cloud, que ofrece versiones gratuitas y accesibles desde la terminal.
-
-```bash
-ollama run kimi-k2:1t-cloud
-ollama run qwen3-coder:480b-cloud
-ollama run minimax-m2:cloud
-ollama run gemini-3-pro-preview
-```
-
-- Modelo Kimi-k2
-
-<img width="1097" height="194" alt="image" src="https://github.com/user-attachments/assets/f2195529-9d56-4311-b8cb-f5c5ba40b667" />
-
-- Modelo Qwen3
-
-<img width="731" height="173" alt="image" src="https://github.com/user-attachments/assets/fe381af7-2839-4866-92ec-9e19d6cf2c77" />
-
-- Modelo Minimax
-
-<img width="1100" height="553" alt="image" src="https://github.com/user-attachments/assets/d9838471-9612-4c4a-91eb-11156b6a1293" />
-
-- Modelo Gemini3
-
-<img width="1101" height="510" alt="image" src="https://github.com/user-attachments/assets/b3f9a9bb-0c8f-4401-be73-659258addd55" />
+<img width="898" height="95" alt="image" src="https://github.com/user-attachments/assets/fccf9bef-5c72-4e30-9c0d-06a52498eaae" />
+<img width="1140" height="578" alt="image" src="https://github.com/user-attachments/assets/0459ec87-1b52-470d-87af-e19e47da4c1f" />
 
 ---
 ## 6. ***Configuración y habilitación de MCP***
 
+Se han activado varios ***MCP locales*** para que los agentes de OpenCode puedan hacer cosas fuera del modelo de forma segura y sin complicaciones. Todo se configura en el ***opencode.json*** y se activan al abrir OpenCode. Los MCP que se han configurado han sido los siguientes:
 
+- ***Browser (navegador web):*** Sirve para abrir webs y sacar información de ellas.
+- ***Files (archivos):*** Permite crear, leer y modificar archivos locales.
+- ***Notes (notas):*** Permite crear y gestionar notas rápidas.
+
+<img width="766" height="945" alt="image" src="https://github.com/user-attachments/assets/bfb6aff1-94a6-4c23-b39c-ee9207a3bd6b" />
 
 ---
 ## 7. ***Prueba funcional del agente***
