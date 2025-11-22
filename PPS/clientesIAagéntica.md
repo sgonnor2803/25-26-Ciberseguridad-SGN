@@ -127,7 +127,7 @@ Aquí se comprueba que los modelos y los MCP locales funcionan correctamente den
 
 ### 7.1. ***Prueba de modelos***
 
-Se ejecutan prompts simples para cada modelo:
+Se han realizado pruebas con los modelos disponibles, ejecutando prompts simples para cada uno. Algunos modelos no pudieron probarse debido a que requieren acceso premium.
 
 - ***Modelo GPT-5 Nano***
 
@@ -136,14 +136,6 @@ Dame un resumen de prueba
 ```
 
 <img width="1200" height="636" alt="image" src="https://github.com/user-attachments/assets/a9b415e9-17b9-4d6e-8d79-9e1beafdb679" />
-
-- ***Modelo Gemini3***
-
-```bash
-Haz un resumen de esta frase: OpenCode facilita la integración de IA
-```
-
-
 
 - ***Modelo kimi-k2***
 
@@ -211,3 +203,4 @@ Se activaron ***MCP locales*** (Browser, Files y Notes) que permiten a los agent
 Las pruebas muestran que los modelos y MCP funcionan correctamente, permitiendo generar texto, código y manejar tareas externas desde OpenCode.
 
 En definitiva, se consiguió un entorno ágil y funcional para trabajar con agentes de IA y capacidades externas de manera integrada.
+
