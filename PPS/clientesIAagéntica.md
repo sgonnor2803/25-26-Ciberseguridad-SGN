@@ -123,12 +123,91 @@ Se han activado varios ***MCP locales*** para que los agentes de OpenCode puedan
 ---
 ## 7. ***Prueba funcional del agente***
 
+Aquí se comprueba que los modelos y los MCP locales funcionan correctamente dentro de OpenCode. La idea es probar cada modelo y MCP con prompts simples y ver que devuelven resultados correctos.
 
+### 7.1. ***Prueba de modelos***
+
+Se ejecutan prompts simples para cada modelo:
+
+- ***Modelo GPT-5 Nano***
+
+```bash
+Dame un resumen de prueba
+```
+
+<img width="1200" height="636" alt="image" src="https://github.com/user-attachments/assets/a9b415e9-17b9-4d6e-8d79-9e1beafdb679" />
+
+- ***Modelo Gemini3***
+
+```bash
+Haz un resumen de esta frase: OpenCode facilita la integración de IA
+```
+
+
+
+- ***Modelo kimi-k2***
+
+```bash
+Crea una lista de 3 tareas simples
+```
+
+<img width="1317" height="576" alt="image" src="https://github.com/user-attachments/assets/2bc0013a-baff-44d3-83b1-47248c60a818" />
+
+- ***Modelo Minimax-M2***
+
+```bash
+Genera un breve texto explicativo sobre IA
+```
+
+<img width="1316" height="577" alt="image" src="https://github.com/user-attachments/assets/b943738c-35ad-4282-aa54-76e085272f37" />
+
+- ***Modelo Qwen3-Coder***
+
+```bash
+Escribe un ejemplo de código Python que sume dos números
+```
+
+<img width="1321" height="575" alt="image" src="https://github.com/user-attachments/assets/a1677f55-4a43-4575-8657-f005bd7ae5f9" />
+
+---
+### 7.2. ***Prueba MCP Locales***
+
+Se prueban los MCP configurados en ***opencode.json*** con prompts sencillos:
+
+- ***MCP Browser***
+
+```bash
+Usa MCP Browser para abrir este enlace https://es.wikipedia.org/wiki/Microsoft y dime cuando fue la fundación
+```
+
+<img width="1322" height="574" alt="image" src="https://github.com/user-attachments/assets/7a504657-75d0-4f81-b5b2-a1cf2f8d1155" />
+
+- ***MCP Files***
+
+```bash
+Usa MCP Files para crear resumen.txt con el contenido Prueba de MCP Files
+```
+
+<img width="1316" height="571" alt="image" src="https://github.com/user-attachments/assets/bae386f5-c8b7-4635-bf0e-fc60ca884f7d" />
+<img width="467" height="182" alt="image" src="https://github.com/user-attachments/assets/140e5ae2-db45-4ce2-b652-f274fbad43aa" />
+
+
+- ***MCP Notes***
+
+```bash
+Usa MCP Notes para crear una nota con título Prueba MCP Notes y contenido Esto es una nota de prueba
+```
+
+<img width="1319" height="576" alt="image" src="https://github.com/user-attachments/assets/fd6d379f-2536-4195-a24d-687b4e22098f" />
+<img width="697" height="212" alt="image" src="https://github.com/user-attachments/assets/ce80e70c-9fc1-4799-9a90-d697766da0fe" />
 
 ---
 ## 8. ***Conclusiones***
 
+Se ha configurado un entorno completo con ***OpenCode***, conectando modelos internos y de ***Ollama Cloud*** para usar ***GPT-5 Nano, Sonnet4.5, Gemini3, Kimi-K2, Minimax-M2 y Qwen3-Coder***.
 
+Se activaron ***MCP locales*** (Browser, Files y Notes) que permiten a los agentes interactuar con el entorno de forma segura.
 
+Las pruebas muestran que los modelos y MCP funcionan correctamente, permitiendo generar texto, código y manejar tareas externas desde OpenCode.
 
-
+En definitiva, se consiguió un entorno ágil y funcional para trabajar con agentes de IA y capacidades externas de manera integrada.
