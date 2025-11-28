@@ -13,8 +13,9 @@
 3. ***[Despliegue de la Máquina Vulnerable](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/instalacionMaquinasVulnerables.md#3-despliegue-de-la-m%C3%A1quina-vulnerable)***
 4. ***[Reconocimiento y Análisis de Vulnerabilidades](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/instalacionMaquinasVulnerables.md#4-reconocimiento-y-an%C3%A1lisis-de-vulnerabilidades)***
 5. ***[Explotación de Vulnerabilidades](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/instalacionMaquinasVulnerables.md#5-explotaci%C3%B3n-de-vulnerabilidades)***
-6. ***[Medidas de Mitigación y Buenas Prácticas](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/instalacionMaquinasVulnerables.md#6-medidas-de-mitigaci%C3%B3n-y-buenas-pr%C3%A1cticas)***
-7. ***[Conclusiones](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/instalacionMaquinasVulnerables.md#7-conclusiones)***
+6. ***[Escalada de Privilegios]()***
+7. ***[Medidas de Mitigación y Buenas Prácticas](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/instalacionMaquinasVulnerables.md#7-medidas-de-mitigaci%C3%B3n-y-buenas-pr%C3%A1cticas)***
+8. ***[Conclusiones](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/instalacionMaquinasVulnerables.md#8-conclusiones)***
 
 ---
 ## 1. ***Introducción***
@@ -30,6 +31,7 @@ En este apartado se configura WSL para poder acceder correctamente a los servici
 
 ---
 ### 2.1. ***Configuración de red en WSL***
+---
 
 Para que los puertos de los contenedores sean accesibles desde Windows como si fueran localhost, es necesario ajustar la red de WSL.
 
@@ -45,6 +47,7 @@ Con esto, cualquier servicio levantado en Kali bajo WSL será accesible desde el
 
 ---
 ### 2.2. ***Acceder a Kali Linux en WSL***
+---
 
 Después de ajustar la configuración de red, el siguiente paso es entrar en la distribución de Kali Linux dentro de WSL, que será el entorno desde el que se desplegarán las máquinas de Dockerlabs.
 
@@ -72,7 +75,9 @@ Con esto, Kali linux queda listo para comenzar con el despliegue de la máquina 
 
 En este apartado se muestra cómo descargar y poner en marcha una máquina vulnerable desde DockerLabs utilizando Docker dentro de Kali Linux en WSL. Este será el sistema sobre el que realizaremos el reconocimiento y análisis de vulnerabilidades.
 
+---
 ### 3.1. ***Descargar la máquina vulnerable desde DockerLabs***
+---
 
 - Descargamos el comprimido de la ***máquina Vacaciones*** de la página Dockerlab. Este es el ***[enlace](https://mega.nz/file/YCEGAISD#y6iWUG_auH4vUApClb9ix7H6JmOCKm4vAYS2TjQn59g)*** para descargarlo.
 
@@ -89,7 +94,9 @@ unzip vacaciones.zip
 <img width="901" height="330" alt="image" src="https://github.com/user-attachments/assets/ec03ef03-fa3f-4bf6-b46a-bd994c784c80" />
 <img width="868" height="400" alt="image" src="https://github.com/user-attachments/assets/37bc3648-5e27-4317-81c6-03e9b13d6b5a" />
 
+---
 ### 3.2. ***Modificación del archivo auto_deploy.sh***
+---
 
 - Una vez tenemos los archivos, vamos a modificar el script ***auto_deploy.sh*** para que los puertos y servicios de la máquina docker se puedan acceder desde la máquina kali linux de WSL. Para ello, vamos ejecutar este comando y modificaremos la siguiente línea:
 
@@ -103,7 +110,9 @@ docker run -d --network host --name $CONTAINER_NAME $IMAGE_NAME > /dev/null
 <img width="821" height="146" alt="image" src="https://github.com/user-attachments/assets/8624ba8d-9107-4a86-b000-6acf61707aa4" />
 <img width="1479" height="757" alt="image" src="https://github.com/user-attachments/assets/1fae0cb2-419f-42ce-9fed-67a2b5ad99d7" />
 
+---
 ### 3.3. ***Ejecutar el script para levantar la máquina***
+---
 
 Ejecutamos el siguiente comando para desplegar la máquina Vacaciones de Dockerlabs:
 
@@ -125,18 +134,206 @@ docker ps
 ---
 ## 4. ***Reconocimiento y Análisis de Vulnerabilidades***
 
+En este apartado se realiza el reconocimiento inicial de la máquina vulnerable desplegada. El objetivo es identificar los servicios que tiene abiertos, sus versiones y posibles puntos débiles sobre los que profundizar más adelante.
 
+Esta es la ip que nos ha dado al desplegar la máquina:
+
+<img width="555" height="254" alt="image" src="https://github.com/user-attachments/assets/77bb00d2-e841-4b7b-95c4-4ca2f3e0476d" />
+
+---
+### 4.1. ***Comprobación de conexión***
+---
+
+Desde kali, ejecutamos el siguiente comando con la herramienta ping, que permite comprobar si tenemos tanto acceso como si responde:
+
+```bash
+ping -c 2 172.17.0.2
+```
+
+<img width="563" height="301" alt="image" src="https://github.com/user-attachments/assets/1fa1a9a9-cfcd-4feb-987e-b9bfce037a46" />
+
+---
+### 4.2. ***Escaneo de puertos con Nmap***
+---
+
+El primer paso de cualquier análisis es descubrir qué puertos y servicios están activos, descubriendo sus versiones. Para ello, ejecutamos el siguiente comando:
+
+```bash
+nmap -p- -sVC --min-rate 5000 -n -Pn 172.17.0.2
+```
+
+<img width="794" height="467" alt="image" src="https://github.com/user-attachments/assets/06d8159a-5e7c-4cd4-934a-d830fe32d470" /><br>
+
+***Descripción del comando:***
+- ***-p- →*** escanea todos los puertos (1 al 65535)
+- ***-sV →*** intenta identificar la versión de los servicios encontrados
+- ***-sC →*** ejecuta los scripts básicos de reconocimiento de Nmap
+- ***--min-rate 5000 →*** acelera el envío de paquetes para que el escaneo tarde menos
+- ***-n →*** sin resolución DNS
+- ***-Pn →*** desactiva el ping inicial (trata al host como si estuviera activo)
+- ***172.17.0.2 →*** IP de la máquina vulnerable dentro de Docker
+
+***Puertos encontrados:***
+
+- ***22/tcp — SSH***
+  - ***Servicio:*** OpenSSH 7.6p1
+  - ***Sistema:*** Ubuntu
+  - Es un servicio habitual para administración remota.
+
+- ***80/tcp — HTTP***
+  - ***Servicio:*** Apache 2.4.29
+  - ***Sistema:*** Ubuntu
+  - Puede indicar la presencia de un sitio web sencillo o en desarrollo.
+
+---
+### 4.3. ***Enumeración del servicio web***
+---
+
+
+### 4.3.1. ***Análisis con WhatWeb***
+---
+
+Para analizar el servicio HTTP que se ejecuta en el puerto ***80***, se utilizó la herramienta ***WhatWeb***, que permite identificar tecnologías, versiones y otros metadatos del servidor.
+
+Para ello, ejecutamos el siguiente comando:
+
+```bash
+whatweb http://172.17.0.2
+```
+
+<img width="956" height="218" alt="image" src="https://github.com/user-attachments/assets/27e9a59b-6a64-4c91-b12c-1a8b79ccd02f" />
+
+***Resultados obtenidos:***
+- ***Servidor web:*** Apache 2.4.29
+- ***Sistema operativo:*** Ubuntu Linux
+- ***Respuesta HTTP:*** 200 OK
+- ***Dirección IP interna:*** 172.17.0.2
+
+Estos datos confirman que el servidor está funcionando correctamente y utiliza versiones relativamente antiguas.
+
+---
+### 4.3.2. ***Revisión manual del sitio web***
+---
+
+Al acceder desde el navegador a http://172.17.0.2, la página muestra únicamente un comentario HTML:
+
+```bash
+<!-- De : Juan Para: Camilo , te he dejado un correo es importante... -->
+```
+
+<img width="952" height="244" alt="image" src="https://github.com/user-attachments/assets/c91d77c1-5f2e-4b87-84ab-26c392e74fab" />
+
+Aunque a simple vista parece una página vacía, el comentario revela información sensible:
+- Se mencionan dos nombres de usuarios: Juan y Camilo.
+- Es probable que Camilo sea un usuario real del sistema.
+- Esta información puede resultar útil para posteriores fases de acceso o autenticación (por ejemplo, en el servicio SSH del puerto 22).
 
 ---
 ## 5. ***Explotación de Vulnerabilidades***
 
+En esta fase el objetivo es conseguir acceso a la máquina usando la información que ya habíamos encontrado. Mientras revisábamos el servicio web vimos un comentario HTML que mencionaba a un usuario:
+
+```bash
+<!-- De : Juan Para: Camilo , te he dejado un correo es importante... -->
+```
+
+Esto nos dio una pista evidente: ***Camilo*** podría ser un usuario del sistema.
+Además, como el puerto ***22 (SSH)*** estaba abierto, tenía sentido intentar un ataque de fuerza bruta para ver si su contraseña era débil.
+
+---
+### 5.1. ***Ataque de fuerza bruta con Hydra***
+---
+
+Para probar contraseñas utilicé ***Hydra***, que permite automatizar ataques de diccionario sobre servicios como SSH.
+
+Comando usado:
+
+```bash
+hydra -l camilo -P /usr/share/wordlists/rockyou.txt ssh://172.17.0.2
+```
+
+***Qué significa:***
+- ***-l camilo →*** el usuario que queremos probar
+- ***-P rockyou.txt →*** diccionario con miles de contraseñas
+- ***ssh://172.17.0.2 →*** objetivo del ataque (el SSH de la máquina)
+
+Hydra finalmente encontró la contraseña correcta:
+
+<img width="1726" height="372" alt="image" src="https://github.com/user-attachments/assets/1bb56f04-41c8-4e4d-a35d-e361545cf465" />
+
+---
+### 5.2. ***Ataque de fuerza bruta con Hydra***
+---
+
+Con el usuario y la contraseña ya confirmados, solo debemos de conectarnos mediante SSH. Para ello, ejecutamos el siguiente comando:
+
+```bash
+ssh camilo@172.17.0.2
+```
+
+<img width="810" height="342" alt="image" src="https://github.com/user-attachments/assets/1e0def6f-4a26-4cfd-9752-dda3e68fa48d" /><br>
+
+Y efectivamente, estamos logueados como camilo y ya tenemos acceso inicial al sistema.
+
+---
+## 6. ***Escalada de Privilegios***
+
+Una vez dentro del sistema como el usuario camilo, el siguiente paso fue intentar conseguir más privilegios hasta llegar a root. Para ello fui revisando el sistema y encontré una pista clave.
+
+---
+### 6.1. ***Descubrimiento de credenciales de otro usuario***
+---
+
+Durante la enumeración interna localicé un archivo de correo en:
+
+```bash
+/var/mail/camilo/correo.txt
+```
+
+<img width="1118" height="220" alt="image" src="https://github.com/user-attachments/assets/f1751004-94ea-4ded-a15b-91d18ef9fed7" />
+
+Dentro del mensaje, Juan le había dejado a Camilo su contraseña, que resultó ser ***2k84dicb***.
+
+Esto nos permite cambiar de usuario, de camilo hacia el usuario juan:
+
+```bash
+su juan
+```
+
+<img width="406" height="184" alt="image" src="https://github.com/user-attachments/assets/0849a74c-cbe8-41a5-8a43-fa4c54f08dc3" />
+
+---
+### 6.2. ***Comprobación de privilegios con sudo***
+---
+
+Ya como juan, revisé qué permisos especiales tenía:
+
+```bash
+sudo -l
+```
+
+<img width="1064" height="203" alt="image" src="https://github.com/user-attachments/assets/8510fe1f-65e9-45e5-93ee-380af4a959a9" />
+
+Esto quiere decir que Juan puede ejecutar ruby como root sin necesidad de contraseña.
+Esto es un vector de escalada bastante claro.
+
+Consultando GTFObins (una referencia de técnicas de escalada usando binarios del sistema), encontré que ruby permite abrir una shell con permisos elevados.
+
+El comando recomendado es:
+
+```bash
+sudo ruby -e 'exec "/bin/bash"'
+```
+
+<img width="1082" height="161" alt="image" src="https://github.com/user-attachments/assets/f86bb368-7bb3-4178-8fd4-62500918ff18" />
+
+En este punto ya tenemos control total sobre la máquina y podemos realizar cualquier acción con permisos máximos.
+
+---
+## 7. ***Medidas de Mitigación y Buenas Prácticas***
+
 
 
 ---
-## 6. ***Medidas de Mitigación y Buenas Prácticas***
-
-
-
----
-## 7. ***Conclusiones***
+## 8. ***Conclusiones***
 
