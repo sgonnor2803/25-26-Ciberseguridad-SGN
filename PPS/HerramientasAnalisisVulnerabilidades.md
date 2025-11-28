@@ -8,91 +8,67 @@
 ---
 ## Índice
 
-1. ***[Introducción]()***
-2. ***[Preparación del entorno]()***
-3. ***[Configuración de MCP para Hexstrike]()***
-4. ***[Pruebas de funcionamiento]()***
-5. ***[Conclusión]()***
+1. ***[Introducción](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/HerramientasAnalisisVulnerabilidades.md#1-introducci%C3%B3n)***
+2. ***[Preparación del entorno](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/HerramientasAnalisisVulnerabilidades.md#2-preparaci%C3%B3n-del-entorno)***
+3. ***[Configuración de MCP para Hexstrike](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/HerramientasAnalisisVulnerabilidades.md#3-configuraci%C3%B3n-de-mcp-para-hexstrike)***
+4. ***[Pruebas de funcionamiento](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/HerramientasAnalisisVulnerabilidades.md#4-pruebas-de-funcionamiento)***
+5. ***[Conclusión](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/HerramientasAnalisisVulnerabilidades.md#5-conclusi%C3%B3n)***
 
 ---
 ## 1. ***Introducción***
 
-En esta parte del proyecto se integra ***Hexstrike*** como herramienta de análisis de vulnerabilidades dentro de OpenCode mediante un servidor ***MCP***. El objetivo es que los agentes puedan lanzar escaneos y obtener resultados directamente desde la IA, usando el servidor de Hexstrike disponible en la red del aula o ejecutado desde WSL. Con esto se amplía la capacidad del agente para tareas de ciberseguridad de forma automática y controlada.
+Este proyecto consiste en integrar ***Gemini CLI*** con un servidor MCP ***Hexstrike***. El objetivo es que Gemini pueda comunicarse con el MCP para realizar acciones de análisis de vulnerabilidades de forma automática dentro del entorno de trabajo.
 
 ---
 ## 2. ***Preparación del entorno***
 
-En este apartado se explica cómo preparar el entorno para poder conectar OpenCode con Hexstrike mediante un servidor MCP. Para ello se usará WSL (Kali Linux), donde desplegaremos el MCP y lo dejaremos accesible desde OpenCode a través de localhost.
+Para integrar Hexstrike como MCP dentro de Gemini CLI, primero se prepara el entorno local donde se ejecutará el servidor MCP:
 
-- Abrimos en la terminal la máquina kali linux de WSL. Para ello, ejecutamos el siguiente comando:
-
-```bash
-wsl -d kali-linux
-```
-
-<img width="677" height="161" alt="image" src="https://github.com/user-attachments/assets/1094e0b9-76d4-4b50-bca4-ca6911915dd0" />
-
-- Accedemos hacia la carpeta donde vamos a clonar el repositorio del MCP Hexstrike. Para ello, ejecutamos el siguiente comando:
+- Primero, comprobamos que Gemini CLI se puede ejecutar correctamente:
 
 ```bash
-cd Desktop/Ciberseguridad/PuestaEnProduccionSegura/
+gemini
 ```
 
-<img width="1247" height="232" alt="image" src="https://github.com/user-attachments/assets/ebffc22e-8efc-4f6d-acf9-fb1221bcd1df" />
+<img width="952" height="531" alt="image" src="https://github.com/user-attachments/assets/798c4269-be28-4282-8917-73c0ac3e5973" />
 
-- Clonamos el repositorio Hexstrike en el directorio que elejimos antes y accedemos a él. Para ello, ejecutamos los siguientes comandos:
+- Ahora, vamos a clonar el repositorio del MCP Hexstrike y accedemos a él. Para ello, ejecutamos los siguientes comandos:
 
 ```bash
-git clone https://github.com/0x4m4/hexstrike-ai
-cd hexstrike-ai/
+git clone https://github.com/0x4m4/hexstrike-ai/
+cd hexstrike-ai
 ```
 
-<img width="1276" height="395" alt="image" src="https://github.com/user-attachments/assets/456e4785-7c40-4a02-896c-493c0d0bede0" />
-<img width="1379" height="212" alt="image" src="https://github.com/user-attachments/assets/e941e3aa-2112-4b9b-b180-67fef804ee94" />
+<img width="954" height="354" alt="image" src="https://github.com/user-attachments/assets/32428693-15d2-434c-8c49-c54a4e5fe518" />
 
-- Teniendo el repositorio clonado, vamos a instalar todas las dependencias que necesita el MCP de Hexstrike. Para ello, ejecutamos el siguiente comandos:
+- Instalamos las dependencias necesarias para ejecutar el MCP Hexstrike. Para ello, ejecutamos el siguiente comando:
 
 ```bash
 pip3 install -r requirements.txt --break-system-packages
 ```
 
-<img width="1627" height="758" alt="image" src="https://github.com/user-attachments/assets/9483cb92-47f3-44b1-b338-e08d388d141d" />
+<img width="953" height="529" alt="image" src="https://github.com/user-attachments/assets/4a04708a-0ceb-4250-bc70-abae1ac81810" />
 
-- Desplegamos el MCP Hexstrike mediante el siguiente comando:
+- Por último, desplegamos el servidor Hexstrike para conectar más adelante el MCP al Gemini CLI. Para ello, ejecutamos el siguiente comando:
 
 ```bash
 python3 hexstrike_server.py
 ```
 
-<img width="1625" height="759" alt="image" src="https://github.com/user-attachments/assets/9583ca37-4b72-4015-9e2e-a4fd81945088" />
+<img width="954" height="841" alt="image" src="https://github.com/user-attachments/assets/ad09e3fa-6890-4cd7-9ea7-3e47a215b662" />
 
-- Comprobamos si el MCP de Hexstrike se está ejecutando correctamente. Para ello. accedemos desde nuestro anfitrion a la siguiente url:
+- Comprobamos que el servidor está desplegado correctamente. Para ello, accedemos a la siguiente url:
 
 ```bash
-http://localhost:8888/health
+http://127.0.0.1:8888/health
 ```
 
-<img width="957" height="962" alt="image" src="https://github.com/user-attachments/assets/0cc045ed-eae4-4641-9545-9c70bc2df0b3" />
+<img width="945" height="751" alt="image" src="https://github.com/user-attachments/assets/bfca3e65-75b5-4b96-972a-f0285be65f95" />
 
 ---
 ## 3. ***Configuración de MCP para Hexstrike***
 
-En este apartado se configura el servidor MCP que permitirá a los agentes de OpenCode comunicarse con Hexstrike, la herramienta de análisis de vulnerabilidades desplegada en WSL.
 
-- Primero, vamos a configurar el MCP en el archivo de configuración de OpenCode. Añadimos al bloque mcp la siguiente configuración:
-
-```bash
-"hexstrike": {
-      "type": "local",
-      "command": ["python3", "/mnt/c/Users/dryke/Desktop/Ciberseguridad/PuestaEnProduccionSegura/hexstrike-ai/hexstrike_server.py"],
-      "enabled": true,
-      "timeout": 300
-    }
-```
-
-<img width="1618" height="770" alt="image" src="https://github.com/user-attachments/assets/141d5e2b-091e-4154-a422-3242f755b148" />
-
-- 
 
 ---
 ## 4. ***Pruebas de funcionamiento***
