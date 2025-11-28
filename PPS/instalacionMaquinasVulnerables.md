@@ -13,7 +13,7 @@
 3. ***[Despliegue de la Máquina Vulnerable](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/instalacionMaquinasVulnerables.md#3-despliegue-de-la-m%C3%A1quina-vulnerable)***
 4. ***[Reconocimiento y Análisis de Vulnerabilidades](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/instalacionMaquinasVulnerables.md#4-reconocimiento-y-an%C3%A1lisis-de-vulnerabilidades)***
 5. ***[Explotación de Vulnerabilidades](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/instalacionMaquinasVulnerables.md#5-explotaci%C3%B3n-de-vulnerabilidades)***
-6. ***[Escalada de Privilegios]()***
+6. ***[Escalada de Privilegios](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/instalacionMaquinasVulnerables.md#6-escalada-de-privilegios)***
 7. ***[Medidas de Mitigación y Buenas Prácticas](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/instalacionMaquinasVulnerables.md#7-medidas-de-mitigaci%C3%B3n-y-buenas-pr%C3%A1cticas)***
 8. ***[Conclusiones](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/instalacionMaquinasVulnerables.md#8-conclusiones)***
 
@@ -332,8 +332,73 @@ En este punto ya tenemos control total sobre la máquina y podemos realizar cual
 ---
 ## 7. ***Medidas de Mitigación y Buenas Prácticas***
 
+Después de analizar y explotar la máquina, se pueden sacar varias mejoras importantes para evitar que este tipo de ataques funcionen en un entorno real. Aquí están las principales medidas que deberían aplicarse:
 
+---
+### 7.1. ***Proteger el servicio SSH***
+---
+
+- ***Deshabilitar el acceso SSH a usuarios sin necesidad real.***
+En este caso, camilo tenía acceso cuando no parece ser imprescindible.
+
+- ***Usar contraseñas fuertes o, mejor todavía, claves SSH.***
+Hydra consiguió romper la contraseña porque el sistema permitía autenticación por contraseña simple.
+
+- ***Limitar intentos de login.***
+Configurar Fail2Ban o ajustes de sshd_config para evitar ataques de fuerza bruta.
+
+---
+### 7.2. ***Evitar filtraciones de información en servicios web***
+---
+
+- No dejar ***comentarios HTML con información sensible***, como nombres de usuarios o mensajes internos.
+
+- Revisar el contenido expuesto y eliminar todo lo que no sea necesario para el funcionamiento de la página.
+
+---
+### 7.3. ***Gestionar correctamente el correo interno***
+---
+
+- No enviar contraseñas por correo en texto plano.
+En el sistema, la contraseña de Juan estaba en un archivo accesible por otros usuarios.
+
+- Si se usa correo interno, limitar los permisos y limpiar mensajes antiguos.
+
+---
+### 7.4. ***Revisar privilegios sudo***
+---
+
+- Evitar dar permisos sudo sin contraseña a usuarios normales.
+Aquí, Juan podía ejecutar ruby como root sin ningún tipo de control.
+
+- Usar sudo -l de forma periódica para revisar permisos peligrosos.
+
+---
+### 7.5. ***Revisar privilegios sudo***
+---
+
+Algunos binarios como ruby, python, perl, awk, etc., pueden abrir shells si se ejecutan como root.
+Si es necesario permitirlos con sudo, añadir restricciones usando secure_path, noexec, o reglas tipo sudoers más específicas.
+
+---
+### 7.6. ***Actualizar servicios***
+---
+
+Apache 2.4.29 y OpenSSH 7.6p1 son versiones antiguas.
+Mantener los servicios al día reduce vulnerabilidades conocidas.
+
+---
+### 7.7. ***Segregar usuarios y permisos***
+---
+
+- Un usuario no debería poder leer el correo de otro.
+- Revisar permisos de archivos sensibles y carpetas de sistema.
 
 ---
 ## 8. ***Conclusiones***
 
+El uso de WSL junto con Kali Linux ha permitido trabajar con la máquina vulnerable de forma sencilla y práctica, ofreciendo un entorno cómodo para realizar todas las pruebas sin configuraciones complejas.
+
+Durante el análisis se comprobó cómo varios errores básicos, como un usuario expuesto en la web, una contraseña débil en SSH, credenciales guardadas en texto plano y permisos sudo mal configurados, pueden encadenarse y facilitar que un atacante obtenga acceso completo al sistema.
+
+En conclusión, esta práctica demuestra la importancia de revisar la configuración de los servicios y aplicar medidas de seguridad básicas para evitar que fallos simples terminen comprometiendo toda la máquina.
