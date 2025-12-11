@@ -84,6 +84,11 @@ nano ~/.mcp/servers/hexstrike.json
 ```bash
 gemini mcp list
 ```
+- Comprobamos que Gemini CLI reconoce tanto el MCP Hexstrike como las herramientas que ha implementado este MCP. Para ello, ejecutamos Gemini CLI y comprobamos con los siguientes comandos:
+
+```bash
+gemini
+```
 
 <img width="953" height="240" alt="image" src="https://github.com/user-attachments/assets/f28432c3-2981-4ad9-a8e5-7840d118b953" />
 
@@ -92,10 +97,7 @@ gemini mcp list
 
 En este apartado se comprueba que Gemini CLI se conecta correctamente al MCP de Hexstrike y que los agentes pueden recibir respuestas de prueba para análisis de vulnerabilidades.
 
-- Comprobamos que Gemini CLI reconoce tanto el MCP Hexstrike como las herramientas que ha implementado este MCP. Para ello, ejecutamos Gemini CLI y comprobamos con los siguientes comandos:
-
 ```bash
-gemini
 /mcp
 ```
 
