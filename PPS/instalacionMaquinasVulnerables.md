@@ -1,3 +1,4 @@
+
 <h1 align="center">Instalación de Máquinas Vulnerables: dockerlabs.es</h1>
 
 ![imagen portada infraestructura](https://github.com/IES-Rafael-Alberti/25-26-Ciberseguridad-Grupo-5/blob/main/PPS/images/portadainfraestructura.png)
@@ -394,8 +395,18 @@ Mantener los servicios al día reduce vulnerabilidades conocidas.
 - Un usuario no debería poder leer el correo de otro.
 - Revisar permisos de archivos sensibles y carpetas de sistema.
 
+## 8. ***Comparativa del análisis manual vs. análisis con Hexstrike MCP***
+
+Después de hacer el escaneo manual a la máquina 172.17.0.2, se volvió a repetir todo pero usando el MCP Hexstrike desde Gemini. La diferencia es clara: a mano toca ir comando por comando (nmap, nikto, gobuster, hydra…), interpretar la salida y montar conclusiones. Con Hexstrike, la IA lo hace todo seguida y te devuelve un informe ya ordenado.
+
+Hexstrike encontró lo mismo que en el análisis manual: Apache viejo, cabeceras de seguridad que faltan, la fuga de los usuarios juan y camilo en el HTML, y que la mejor forma de entrar sería un ataque de fuerza bruta al SSH. Básicamente, llega a las mismas conclusiones, pero mucho más rápido y sin tener que ir comprobando cada herramienta una por una.
+
+<img width="1919" height="1045" alt="image" src="https://github.com/user-attachments/assets/16d47c22-09df-4b07-99ba-55cdc4e97857" />
+
+En resumen: manual = lento pero controlado. Hexstrike = rápido y te da la película completa sin pelearte con los comandos.
+
 ---
-## 8. ***Conclusiones***
+## 9. ***Conclusiones***
 
 El uso de WSL junto con Kali Linux ha permitido trabajar con la máquina vulnerable de forma sencilla y práctica, ofreciendo un entorno cómodo para realizar todas las pruebas sin configuraciones complejas.
 
