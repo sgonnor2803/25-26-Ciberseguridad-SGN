@@ -16,7 +16,8 @@
 5. ***[Explotación de Vulnerabilidades](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/instalacionMaquinasVulnerables.md#5-explotaci%C3%B3n-de-vulnerabilidades)***
 6. ***[Escalada de Privilegios](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/instalacionMaquinasVulnerables.md#6-escalada-de-privilegios)***
 7. ***[Medidas de Mitigación y Buenas Prácticas](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/instalacionMaquinasVulnerables.md#7-medidas-de-mitigaci%C3%B3n-y-buenas-pr%C3%A1cticas)***
-8. ***[Conclusiones](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/instalacionMaquinasVulnerables.md#8-conclusiones)***
+8. ***[Comparativa del análisis manual vs. análisis con Hexstrike MCP](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/instalacionMaquinasVulnerables.md#8-comparativa-del-an%C3%A1lisis-manual-vs-an%C3%A1lisis-con-hexstrike-mcp)***
+9. ***[Conclusiones](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/PPS/instalacionMaquinasVulnerables.md#9-conclusiones)***
 
 ---
 ## 1. ***Introducción***
