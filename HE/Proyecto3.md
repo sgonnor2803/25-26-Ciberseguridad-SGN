@@ -10,12 +10,13 @@
 ## Índice
 
 1. ***[Introducción]()***
-2. ***[Auditoría de seguridad de la aplicación]()***
-3. ***[Explotación de vulnerabilidades web]()***
-4. ***[Autenticación, control de acceso y sesiones]()***
-5. ***[Seguridad del servidor web]()***
-6. ***[Informe de pentesting y mitigaciones]()***
-7. ***[Conclusiones]()***
+2. ***[Despliegue del entorno]()***
+3. ***[Auditoría de seguridad de la aplicación]()***
+4. ***[Explotación de vulnerabilidades web]()***
+5. ***[Autenticación, control de acceso y sesiones]()***
+6. ***[Seguridad del servidor web]()***
+7. ***[Informe de pentesting y mitigaciones]()***
+8. ***[Conclusiones]()***
 
 ---
 ## 1. ***Introducción***
@@ -23,30 +24,35 @@
 
 
 ---
-## 2. ***Auditoría de seguridad de la aplicación***
+## 2. ***Despliegue del entorno***
 
 
 
 ---
-## 3. ***Explotación de vulnerabilidades web***
+## 3. ***Auditoría de seguridad de la aplicación***
 
 
 
 ---
-## 4. ***Autenticación, control de acceso y sesiones***
+## 4. ***Explotación de vulnerabilidades web***
 
 
 
 ---
-## 5. ***Seguridad del servidor web***
+## 5. ***Autenticación, control de acceso y sesiones***
 
 
 
 ---
-## 6. ***Informe de pentesting y mitigaciones***
+## 6. ***Seguridad del servidor web***
 
 
 
 ---
-## 7. ***Conclusiones***
+## 7. ***Informe de pentesting y mitigaciones***
+
+
+
+---
+## 8. ***Conclusiones***
 
