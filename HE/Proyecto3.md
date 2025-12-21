@@ -195,6 +195,12 @@ $query = 'SELECT userId, password FROM users WHERE username = "' . $user . '"';
 De esta forma, los datos introducidos por el usuario no pueden modificar la consulta SQL y se reduce el riesgo de SQL Injection.
 
 ---
+### ***d) Publicación de comentarios en nombre de otros usuarios***
+---
+
+
+
+---
 ## 5. ***Autenticación, control de acceso y sesiones***
 
 
@@ -211,6 +217,7 @@ De esta forma, los datos introducidos por el usuario no pueden modificar la cons
 
 ---
 ## 8. ***Conclusiones***
+
 
 
 
