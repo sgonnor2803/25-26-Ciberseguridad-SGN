@@ -181,7 +181,7 @@ Además, el campo `password` no se escapa ni se usa en la consulta SQL, ya que s
 #### ***Solución***
 ---
 
-Para corregirlo manteniendo la estructura del código, hay que ***escapar correctamente tanto el usuario como la contraseña*** antes de utilizarlos.
+Para corregirlo, hay que ***escapar correctamente tanto el usuario como la contraseña*** antes de utilizarlos.
 
 Código corregido:
 
@@ -211,6 +211,7 @@ De esta forma, los datos introducidos por el usuario no pueden modificar la cons
 
 ---
 ## 8. ***Conclusiones***
+
 
 
 
