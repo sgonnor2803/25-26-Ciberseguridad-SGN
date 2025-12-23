@@ -196,7 +196,42 @@ De esta forma, los datos introducidos por el usuario no pueden modificar la cons
 ### ***d) Publicación de comentarios en nombre de otros usuarios***
 ---
 
+En este apartado se analiza una vulnerabilidad encontrada al revisar el archivo de copia `add_comment.php~.php`. Al mirar el código se ve que algunos parámetros se usan directamente en la consulta SQL, lo que permite modificarlos y publicar comentarios como si fueran de otros usuarios.
 
+La aplicación usa la siguiente consulta SQL para guardar los comentarios:
+
+```bash
+INSERT INTO comments (playerId, userId, body) VALUES ('".$_GET['id']."', '".$_COOKIE['userId']."', '$body');
+```
+
+El problema es que el parámetro `id` no se valida ni se filtra antes de usarse en la consulta.
+
+#### ***Ejemplo de explotación***
+
+Se modifica el parámetro `id` en la URL introduciendo el siguiente payload:
+
+```bash
+3', '1', 'Gran Jugadora') -- -
+```
+
+<img width="1111" height="233" alt="image" src="https://github.com/user-attachments/assets/2501b015-a450-4d20-bf40-58ef24ebd179" />
+
+Con este payload se cierra la consulta original y se fuerza el `userId`, haciendo que el comentario se guarde como si lo hubiera escrito otro usuario.
+
+<img width="1111" height="789" alt="image" src="https://github.com/user-attachments/assets/a8ed92b7-fe10-4dca-9fd3-9f42338b588a" />
+
+#### ***Proceso de explotación***
+
+- Se localiza el archivo de copia `add_comment.php~.php`.
+- Se analiza la consulta SQL y se detecta que el parámetro `id` se usa directamente.
+- Se modifica el valor de `id` para inyectar SQL.
+- El comentario se guarda en la base de datos con otro usuario distinto.
+
+| Campo                                                | Respuesta                                                                                           |
+| ---------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| **Vulnerabilidad detectada**                         | SQL Injection en el parámetro `id` enviado por GET.                                                 |
+| **Descripción del ataque**                           | Manipulando `id` se puede cambiar el `userId` del comentario y publicar mensajes como otro usuario. |
+| **¿Cómo podemos hacer que sea segura esta entrada?** | Validar que `id` sea numérico y usar consultas preparadas.                                          |
 
 ---
 ## 5. ***Autenticación, control de acceso y sesiones***
@@ -215,6 +250,7 @@ De esta forma, los datos introducidos por el usuario no pueden modificar la cons
 
 ---
 ## 8. ***Conclusiones***
+
 
 
 
