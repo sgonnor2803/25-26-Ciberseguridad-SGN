@@ -346,7 +346,269 @@ Esto demuestra que la aplicación es vulnerable a ***XSS reflejado***, ya que mu
 ---
 ## 5. ***Autenticación, control de acceso y sesiones***
 
+En este apartado vamos a observar cómo **Talent ScoutTech** maneja el registro, el login y las sesiones. La idea es ver qué falla, qué riesgos hay para los usuarios y cómo podemos arreglarlo para que no se pueda suplantar a nadie ni robar datos. Vamos a revisar registro, login, control de acceso y seguridad de sesiones, y proponer mejoras simples pero efectivas.
 
+---
+### ***a) Seguridad en el registro de usuarios (register.php)***
+---
+
+Al revisar la página `register.php` se observa que el registro de usuarios presenta varios problemas de seguridad. La aplicación permite crear usuarios sin apenas controles y utiliza consultas SQL poco seguras, lo que puede provocar ataques como SQL Injection o registros incorrectos.
+
+#### ***Problemas detectados en el registro***
+
+Durante el análisis se han encontrado los siguientes problemas:
+
+- El usuario y la contraseña se usan directamente en la consulta SQL, lo que permite ataques de ***SQL Injection***.
+- No se comprueba si los campos están vacíos.
+- Los errores no se gestionan de forma segura.
+- Las contraseñas se guardan en texto plano.
+- El formulario de registro no tiene protección frente a CSRF.
+
+#### ***Medidas aplicadas***
+
+De todas estas vulnerabilidades, se han aplicado las medidas que son más fáciles de implementar sin cambiar el funcionamiento general de la aplicación:
+
+- Se valida que el usuario y la contraseña no estén vacíos.
+- Se utilizan ***consultas preparadas*** para evitar SQL Injection.
+- Se controla el error de la consulta sin mostrar información sensible.
+
+El código del registro se ha modificado quedando de la siguiente forma:
+
+```bash
+<?php
+require_once dirname(__FILE__) . '/private/conf.php';
+
+# Require logged users
+# require dirname(__FILE__) . '/private/auth.php';
+
+if (isset($_POST['username']) && isset($_POST['password'])) {
+        # Just in from POST => save to database
+        $username = trim($_POST['username']);
+        $password = trim($_POST['password']);
+
+        if ($username === '' || $password === '') {
+                die("Por favor, completa todos los campos");
+        }
+
+        $username = SQLite3::escapeString($username);
+        $password = SQLite3::escapeString($password);
+
+        // Consulta preparada
+        $stmt = $db->prepare('INSERT INTO users (username, password) VALUES (:username, :password)');
+        $stmt->bindValue(':username', $username, SQLITE3_TEXT);
+        $stmt->bindValue(':password', $password, SQLITE3_TEXT);
+        $result = $stmt->execute();
+
+        if (!$result) {
+                die("Invalid query");
+        }
+
+    header("Location: list_players.php");
+}
+```
+
+#### ***Otras mejoras propuestas***
+
+Existen otras medidas de seguridad que no se han implementado en este apartado porque requieren modificar otras partes de la aplicación:
+
+- Guardar las contraseñas cifradas usando `password_hash()`.
+- Añadir protección CSRF a los formularios.
+
+Con estas mejoras, el registro ya no es vulnerable a SQLi y valida que los campos no estén vacíos. Aun se podrían añadir más medidas, pero lo aplicado cubre los riesgos principales para el proyecto.
+
+---
+### ***b) Seguridad en el login de usuarios (auth.php)***
+---
+
+Al revisar la página `auth.php` se observa que el sistema de login presenta varios problemas de seguridad. La aplicación valida usuarios y contraseñas de forma insegura, lo que permite ataques como ***SQL Injection*** o la ejecución de código malicioso a través de mensajes de error.
+
+#### ***Problemas detectados en el login***
+
+Durante el análisis se han encontrado los siguientes problemas:
+
+- La consulta SQL usaba directamente los valores introducidos por el usuario, lo que permitía ataques de ***SQL Injection***.
+- Los mensajes de error no se mostraban escapados, pudiendo provocar ***XSS*** si se incluían datos maliciosos.
+- Las contraseñas se comparaban en texto plano.
+- Las cookies usadas para la sesión (`user` y `password`) no estaban marcadas como `HttpOnly` ni `Secure`.
+- No hay protección frente a ***CSRF*** en los formularios de login y logout.
+
+#### ***Medidas aplicadas***
+
+De todas estas vulnerabilidades, se han aplicado las medidas que son factibles sin cambiar la arquitectura general de la aplicación:
+
+- Se utilizan ***consultas preparadas*** para evitar SQL Injection.
+- Se comprueba que la fila devuelta exista antes de comparar la contraseña.
+- Los mensajes de error se muestran usando `htmlspecialchars($error)` para evitar XSS.
+
+El código del login se ha modificado quedando de la siguiente forma:
+
+```bash
+<?php
+require_once dirname(__FILE__) . '/conf.php';
+
+$userId = FALSE;
+
+# Check whether a pair of user and password are valid; returns true if valid.
+function areUserAndPasswordValid($user, $password) {
+        global $db, $userId;
+
+        // Consulta preparada para evitar SQLi
+        $stmt = $db->prepare('SELECT userId, password FROM users WHERE username = :user');
+        $stmt->bindValue(':user', $user, SQLITE3_TEXT);
+        $result = $stmt->execute();
+        $row = $result->fetchArray();
+
+        if ($row && $password == $row['password'])
+        {
+                $userId = $row['userId'];
+                $_COOKIE['userId'] = $userId;
+                return TRUE;
+        }
+        else
+                return FALSE;
+}
+
+# On login
+if (isset($_POST['username']) && isset($_POST['password'])) {
+        $_COOKIE['user'] = $_POST['username'];
+        $_COOKIE['password'] = $_POST['password'];
+}
+
+# On logout
+if (isset($_POST['Logout'])) {
+        # Delete cookies
+        setcookie('user', FALSE);
+        setcookie('password', FALSE);
+        setcookie('userId', FALSE);
+
+        unset($_COOKIE['user']);
+        unset($_COOKIE['password']);
+        unset($_COOKIE['userId']);
+
+        header("Location: index.php");
+}
+
+
+# Check user and password
+if (isset($_COOKIE['user']) && isset($_COOKIE['password'])) {
+        if (areUserAndPasswordValid($_COOKIE['user'], $_COOKIE['password'])) {
+                $login_ok = TRUE;
+                $error = "";
+        } else {
+                $login_ok = FALSE;
+                $error = "Invalid user or password.";
+        }
+} else {
+        $login_ok = FALSE;
+        $error = "This page requires you to be logged in.";
+}
+
+if ($login_ok == FALSE) {
+
+?>
+    <!doctype html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="css/style.css">
+        <title>Práctica RA3 - Authentication page</title>
+    </head>
+    <body>
+    <header class="auth">
+        <h1>Authentication page</h1>
+    </header>
+    <section class="auth">
+        <div class="message">
+            <?= htmlspecialchars($error) ?><br>
+        </div>
+        <section>
+            <div>
+                <h2>Login</h2>
+                <form action="#" method="post">
+                    <label>User</label>
+                    <input type="text" name="username"><br>
+                    <label>Password</label>
+                    <input type="password" name="password"><br>
+                    <input type="submit" value="Login">
+                </form>
+            </div>
+
+            <div>
+                <h2>Logout</h2>
+                <form action="#" method="post">
+                    <input type="submit" name="Logout" value="Logout">
+            </div>
+        </section>
+    </section>
+    <footer>
+        <h4>Puesta en producción segura</h4>
+        < Please <a href="http://www.donate.co?amount=100&amp;destination=ACMEScouting/"> donate</a> >
+    </footer>
+    <?php
+    exit (0);
+}
+
+setcookie('user', $_COOKIE['user']);
+setcookie('password', $_COOKIE['password']);
+
+
+?>
+```
+
+#### ***Otras mejoras propuestas***
+
+Existen otras medidas de seguridad que no se han implementado porque requieren modificar otras partes de la aplicación:
+
+- Guardar las contraseñas cifradas usando `password_hash()` y `password_verify()`.
+- Usar cookies de sesión seguras (`HttpOnly` y `Secure`).
+- Añadir ***protección CSRF*** en los formularios de login y logout.
+
+Con estas mejoras aplicadas, el login ya no es vulnerable a SQLi y los errores no ejecutan código malicioso.
+
+---
+### ***c) Gestión del acceso a la página de registro (register.php)***
+---
+
+Al revisar la página `register.php`, se observa que actualmente cualquier usuario, registrado o no, puede acceder al registro de usuarios. Esto puede ser problemático si no queremos que se creen nuevos usuarios libremente.
+
+#### ***Problema detectado***
+
+- La página de registro está abierta a todos los usuarios.
+- Esto puede permitir registros no autorizados y aumentar riesgos de seguridad.
+
+#### ***Medida aplicada***
+
+Para limitar el acceso sin cambiar toda la aplicación:
+
+- Se comprueba si el usuario ya está autenticado mediante cookies.
+- Si el usuario ya tiene sesión activa, se le redirige automáticamente a la página de lista de jugadores (`list_players.php`), evitando que pueda acceder al registro.
+
+El código que implementa esta medida es:
+
+```bash
+<?php
+require_once dirname(__FILE__) . '/private/conf.php';
+
+# Require logged users
+require_once dirname(__FILE__) . '/private/auth.php';
+
+if (isset($_COOKIE['user']) && isset($_COOKIE['password'])) {
+        header("Location: list_players.php");
+}
+```
+
+#### ***Otras mejoras posibles***
+
+Existen otras medidas que podrían aplicarse en un proyecto más avanzado:
+
+- Restringir el registro solo a administradores mediante roles.
+- Implementar un sistema de invitaciones para permitir solo usuarios autorizados.
+- Deshabilitar completamente el registro en producción.
+
+Con esta medida implementada, la página de registro ya no está accesible para usuarios autenticados, evitando accesos innecesarios o potencialmente peligrosos.
 
 ---
 ## 6. ***Seguridad del servidor web***
@@ -360,4 +622,5 @@ Esto demuestra que la aplicación es vulnerable a ***XSS reflejado***, ya que mu
 
 ---
 ## 8. ***Conclusiones***
+
 
