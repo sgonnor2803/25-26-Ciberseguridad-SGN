@@ -214,11 +214,11 @@ Se modifica el parámetro `id` en la URL introduciendo el siguiente payload:
 3', '1', 'Gran Jugadora') -- -
 ```
 
-<img width="1111" height="233" alt="image" src="https://github.com/user-attachments/assets/2501b015-a450-4d20-bf40-58ef24ebd179" />
+<img width="1111" height="233" alt="image" src="https://github.com/user-attachments/assets/2501b015-a450-4d20-bf40-58ef24ebd179" /><br>
 
 Con este payload se cierra la consulta original y se fuerza el `userId`, haciendo que el comentario se guarde como si lo hubiera escrito otro usuario.
 
-<img width="1111" height="789" alt="image" src="https://github.com/user-attachments/assets/a8ed92b7-fe10-4dca-9fd3-9f42338b588a" />
+<br><img width="1111" height="789" alt="image" src="https://github.com/user-attachments/assets/a8ed92b7-fe10-4dca-9fd3-9f42338b588a" />
 
 #### ***Proceso de explotación***
 
@@ -232,6 +232,116 @@ Con este payload se cierra la consulta original y se fuerza el `userId`, haciend
 | **Vulnerabilidad detectada**                         | SQL Injection en el parámetro `id` enviado por GET.                                                 |
 | **Descripción del ataque**                           | Manipulando `id` se puede cambiar el `userId` del comentario y publicar mensajes como otro usuario. |
 | **¿Cómo podemos hacer que sea segura esta entrada?** | Validar que `id` sea numérico y usar consultas preparadas.                                          |
+
+---
+### ***Parte 2 – Cross Site Scripting (XSS)***
+---
+
+### ***a) Comprobación de XSS en comentarios***
+---
+
+Para comprobar si la aplicación es vulnerable a ***Cross Site Scripting (XSS)***, se introduce código JavaScript dentro de un comentario asociado a un jugador.
+
+El siguiente mensaje se introduce como comentario:
+
+```bash
+<script>alert('XSS');</script>
+```
+
+<img width="1109" height="787" alt="image" src="https://github.com/user-attachments/assets/65bfbdda-0a66-497d-8205-c8b09828c46e" />
+
+Al acceder posteriormente a la página `show_comments.php`, el navegador muestra una ventana emergente con el mensaje **"XSS"**, lo que confirma que el código JavaScript se ejecuta correctamente.
+
+<img width="1112" height="786" alt="image" src="https://github.com/user-attachments/assets/2c24d9f4-3229-4d55-a8c6-aa03a913305e" /><br>
+
+| Introduzco el mensaje ...         | `<script>alert('XSS');</script>` |
+| --------------------------------- | -------------------------------- |
+| En el formulario de la página ... | `add_comment.php`                |
+
+La aplicación muestra los comentarios sin filtrar ni escapar su contenido, permitiendo la ejecución de código JavaScript almacenado en la base de datos. Por tanto, la aplicación es vulnerable a ***XSS persistente***.
+
+---
+### ***b) Uso de & en enlaces HTML***
+---
+
+En el código HTML de la página aparece un enlace de donación como este:
+
+```bash
+<a href="http://www.donate.co?amount=100&amp;destination=ACMEScouting/">donate</a>
+```
+
+<img width="1112" height="618" alt="image" src="https://github.com/user-attachments/assets/c76b26bb-2908-4613-a335-dcffebe969d9" />
+
+Aunque en el HTML se vea `&amp;`, el navegador lo interpreta como un `&` normal al enviar la petición al servidor:
+
+```bash
+http://www.donate.co?amount=100&destination=ACMEScouting/
+```
+
+Por qué aparece `&amp;`:
+
+- En HTML, el carácter `&` se utiliza para iniciar entidades HTML (como `&lt;` para `<` o `&quot;` para `"`).
+- Si se pusiera un `&` directamente en el atributo `href`, el parser HTML podría ***confundirlo con el inicio de una entidad***, rompiendo la URL o el código HTML.
+
+Por eso, los editores y navegadores codifican `&` como `&amp;`, de manera que la URL se interpreta correctamente y el HTML sigue siendo válido.
+
+| Explicación ... | El `&` se codifica como `&amp;` para que el HTML no lo confunda con el inicio de una entidad. El navegador lo decodifica automáticamente, enviando la URL correcta al servidor. |
+|-----------------|------------------------------------------------------------------------------------------------------------------------------------------|
+
+---
+### ***c) Análisis de la vulnerabilidad en show_comments.php***
+---
+
+En el código de `show_comments.php` podemos ver que los comentarios se muestran directamente en HTML con esta línea:
+
+```bash
+<p>commented: " . $row['body'] . "</p>
+```
+
+<img width="814" height="355" alt="image" src="https://github.com/user-attachments/assets/292824a1-e779-42c0-a74e-efc13a15e83a" />
+
+Esto permite que cualquier contenido HTML o JavaScript que un usuario introduzca en los comentarios se ejecute en el navegador de otros usuarios (***XSS persistente***).
+
+<img width="975" height="627" alt="image" src="https://github.com/user-attachments/assets/0aac6750-cb39-462e-8ec2-3c214b36b70f" /><br>
+
+| ¿Cuál es el problema?                    | Los comentarios se imprimen directamente sin escapar su contenido, permitiendo la ejecución de código JavaScript inyectado (XSS persistente). |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sustituyo el código de la/las líneas ... | `<p>commented: " . $row['body'] . "</p>`                                                                                                      |
+| ... por el siguiente código ...          | `<p>commented: " . htmlspecialchars($row['body'], ENT_QUOTES, 'UTF-8') . "</p>`                                                               |
+
+<img width="813" height="559" alt="image" src="https://github.com/user-attachments/assets/c3a5f472-3017-4e88-aef1-3433a36b785f" />
+
+La función `htmlspecialchars()` convierte los caracteres especiales (`<`, `>`, `"`, `'`) en entidades HTML (`&lt;`, `&gt;`, `&quot;`, `&#039;`), evitando que el navegador interprete código malicioso. Así, los comentarios se muestran como texto plano, solucionando la vulnerabilidad XSS persistente.
+
+<img width="979" height="623" alt="image" src="https://github.com/user-attachments/assets/84b9c962-32ef-4c16-afeb-0506c20aa77a" />
+
+Con este cambio, `show_comments.php` ya no permite la ejecución de scripts inyectados en los comentarios, mejorando la seguridad de la aplicación frente a ataques XSS.
+
+---
+### ***d) Otras páginas afectadas por XSS***
+---
+
+Además de la página `show_comments.php`, se ha detectado otra vulnerabilidad XSS relacionada con la página de login y con todas las páginas que requieren autenticación.
+
+| Otras páginas afectadas ... | Página de login y páginas que usan `auth.php`                                                                                                                                                                       |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ¿Cómo lo he descubierto?    | Provocando un error en el login con una comilla (`"`) y añadiendo código JavaScript en el campo usuario. Al mostrarse el error SQL, la aplicación imprime el valor introducido sin filtrar, ejecutándose el script. |
+
+Al introducir en el campo usuario del formulario de login el siguiente contenido:
+
+```bash
+" <script>alert('XSS');</script>
+```
+
+<img width="974" height="756" alt="image" src="https://github.com/user-attachments/assets/14a69867-9c99-4d8c-94b7-1450f090f281" /><br>
+
+La comilla hace que la consulta SQL falle y se muestre un mensaje de error. En dicho mensaje aparece el valor introducido por el usuario sin ningún tipo de escape, por lo que el navegador interpreta el `<script>` y ejecuta el `alert`.
+
+<img width="980" height="559" alt="image" src="https://github.com/user-attachments/assets/dbf7493b-e2dd-4a59-a83b-5fce23a606d2" />
+
+<img width="979" height="162" alt="image" src="https://github.com/user-attachments/assets/235b115f-8df9-4d4f-ab5b-0ede899acc7a" />
+
+Esto demuestra que la aplicación es vulnerable a ***XSS reflejado***, ya que muestra directamente datos introducidos por el usuario en mensajes de error, y que esta vulnerabilidad afecta a varias páginas de la aplicación.
 
 ---
 ## 5. ***Autenticación, control de acceso y sesiones***
@@ -250,10 +360,4 @@ Con este payload se cierra la consulta original y se fuerza el `userId`, haciend
 
 ---
 ## 8. ***Conclusiones***
-
-
-
-
-
-
 
