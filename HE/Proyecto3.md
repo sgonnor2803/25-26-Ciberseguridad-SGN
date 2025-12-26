@@ -611,6 +611,56 @@ Existen otras medidas que podrían aplicarse en un proyecto más avanzado:
 Con esta medida implementada, la página de registro ya no está accesible para usuarios autenticados, evitando accesos innecesarios o potencialmente peligrosos.
 
 ---
+### ***d) Protección de la carpeta private***
+---
+
+Al inicio de la práctica se asume que la carpeta `private` no es accesible desde el navegador. Sin embargo, al montar la aplicación en local, esta condición no siempre se cumple, ya que el servidor web puede permitir el acceso directo a esa carpeta si no se configura correctamente.
+
+Si escribimos directamente en el navegador una ruta como:
+
+```bash
+http://localhost/web/private/
+```
+
+<img width="977" height="446" alt="image" src="https://github.com/user-attachments/assets/7625f23c-c5fd-4b6e-aa74-6a8b00b04973" />
+
+Podríamos acceder a archivos que contienen información sensible, como configuraciones o credenciales.
+
+#### ***Problemas detectados***
+
+Durante el análisis se detectan los siguientes riesgos:
+
+- La carpeta `private` puede ser accesible directamente desde el navegador.
+- Archivos como `conf.php` o `auth.php` contienen información sensible.
+- Un atacante podría visualizar o descargar estos archivos.
+- La seguridad depende solo de "suponer" que no se accede a esa carpeta.
+
+#### ***Medidas de seguridad posibles***
+
+Para evitar este problema, se pueden aplicar varias medidas:
+
+- Mover la carpeta `private` fuera del directorio público (`htdocs`, `www`, etc.).
+- Configurar el servidor web para bloquear el acceso a esa carpeta.
+- Usar archivos `.htaccess` para denegar el acceso directo.
+- Evitar mostrar errores del servidor que revelen rutas internas.
+
+#### ***Medidas aplicadas en el proyecto***
+
+En este proyecto, la medida más sencilla y factible es bloquear el acceso a la carpeta private mediante un archivo `.htaccess`.
+
+El contenido del archivo `.htaccess` dentro de la carpeta `private` es:
+
+```bash
+Deny from all
+```
+
+<img width="814" height="187" alt="image" src="https://github.com/user-attachments/assets/d3fe31d5-61e8-409f-bc28-f4370e0a54a1" />
+
+<img width="748" height="285" alt="image" src="https://github.com/user-attachments/assets/f0b3c844-74b6-41f6-b705-4ad31dd851f8" />
+
+Con esta configuración, los archivos de la carpeta `private` no son accesibles desde el navegador, pero siguen pudiendo ser utilizados internamente por PHP, sin necesidad de modificar rutas ni la estructura de la aplicación.
+
+---
 ## 6. ***Seguridad del servidor web***
 
 
@@ -622,5 +672,6 @@ Con esta medida implementada, la página de registro ya no está accesible para 
 
 ---
 ## 8. ***Conclusiones***
+
 
 
