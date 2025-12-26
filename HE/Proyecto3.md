@@ -661,6 +661,45 @@ Deny from all
 Con esta configuración, los archivos de la carpeta `private` no son accesibles desde el navegador, pero siguen pudiendo ser utilizados internamente por PHP, sin necesidad de modificar rutas ni la estructura de la aplicación.
 
 ---
+### ***e) Seguridad de la sesión de usuario***
+---
+
+Al analizar el flujo de la sesión de usuario en la aplicación, se observa que la gestión de la sesión no está correctamente asegurada. Actualmente, la aplicación basa la autenticación en cookies que almacenan directamente el usuario y la contraseña.
+
+#### ***Problemas detectados***
+
+Durante el análisis se detectan los siguientes problemas:
+
+- Las cookies almacenan la contraseña en texto plano, lo que permitiría suplantar a un usuario si se capturan.
+- No se utilizan sesiones de PHP (`$_SESSION`), por lo que no existe un control real de la sesión.
+- La sesión depende únicamente de cookies manipulables por el cliente.
+- No se regeneran identificadores de sesión tras el login.
+- No existe control de caducidad ni invalidación automática de sesión.
+
+#### ***Medidas de seguridad posibles***
+
+En una aplicación más segura, deberían implementarse las siguientes medidas:
+
+- Usar sesiones de PHP (`session_start()`) y almacenar solo el `userId` en la sesión.
+- Eliminar completamente el uso de la contraseña en cookies.
+- Regenerar el ID de sesión tras el login para evitar fijación de sesión.
+- Destruir la sesión correctamente al hacer logout.
+- Usar cookies con atributos `HttpOnly` y `Secure`.
+- Forzar el uso de HTTPS.
+
+#### ***Medidas aplicadas en el proyecto***
+
+En este proyecto **no se ha implementado un sistema completo de sesiones**, ya que hacerlo implicaría modificar todas las páginas de la aplicación y cambiar el flujo completo de autenticación.
+
+Por este motivo, **no se han aplicado cambios directos en la gestión de la sesión**, y el apartado se ha centrado en:
+
+- Analizar y documentar los riesgos existentes.
+- Identificar claramente por qué el sistema actual permite la suplantación de usuarios.
+- Proponer medidas realistas que deberían aplicarse en un entorno de producción.
+
+> Aunque no se han aplicado mejoras técnicas en este apartado, el análisis permite entender claramente por qué la sesión actual no es segura y qué cambios serían necesarios para solucionarlo en una versión futura de la aplicación.
+
+---
 ## 6. ***Seguridad del servidor web***
 
 
@@ -672,6 +711,7 @@ Con esta configuración, los archivos de la carpeta `private` no son accesibles 
 
 ---
 ## 8. ***Conclusiones***
+
 
 
 
