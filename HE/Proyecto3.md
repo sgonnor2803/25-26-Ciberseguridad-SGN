@@ -344,6 +344,41 @@ La comilla hace que la consulta SQL falle y se muestre un mensaje de error. En d
 Esto demuestra que la aplicación es vulnerable a ***XSS reflejado***, ya que muestra directamente datos introducidos por el usuario en mensajes de error, y que esta vulnerabilidad afecta a varias páginas de la aplicación.
 
 ---
+### ***Parte 3 – Cross Site Request Forgery (CSRF)***
+---
+
+### ***a) Botón malicioso "Profile" en list_players.php***
+---
+
+En este apartado vamos a aprovechar que ya sabemos que la aplicación es vulnerable a XSS, para realizar un ataque ***CSRF***. El objetivo es conseguir que, al mostrar el listado de jugadores, aparezca un botón llamado ***Profile*** que, al hacer clic, envíe al usuario a la siguiente URL:
+
+```bash
+http://web.pagos/donate.php?amount=100&receiver=attacker
+```
+
+> De esta forma, cualquier usuario que pulse el botón realizará una donación de ***100€*** al usuario `attacker` en la plataforma `web.pagos`.
+
+
+
+---
+### ***b) Ataque CSRF sin interacción del usuario***
+---
+
+
+
+---
+### ***c) Condiciones necesarias para que se ejecute la donación***
+---
+
+
+
+---
+### ***d) Ataque CSRF enviando parámetros por POST***
+---
+
+
+
+---
 ## 5. ***Autenticación, control de acceso y sesiones***
 
 En este apartado vamos a observar cómo **Talent ScoutTech** maneja el registro, el login y las sesiones. La idea es ver qué falla, qué riesgos hay para los usuarios y cómo podemos arreglarlo para que no se pueda suplantar a nadie ni robar datos. Vamos a revisar registro, login, control de acceso y seguridad de sesiones, y proponer mejoras simples pero efectivas.
@@ -711,6 +746,7 @@ Por este motivo, **no se han aplicado cambios directos en la gestión de la sesi
 
 ---
 ## 8. ***Conclusiones***
+
 
 
 
