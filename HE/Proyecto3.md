@@ -350,15 +350,42 @@ Esto demuestra que la aplicación es vulnerable a ***XSS reflejado***, ya que mu
 ### ***a) Botón malicioso "Profile" en list_players.php***
 ---
 
-En este apartado vamos a aprovechar que ya sabemos que la aplicación es vulnerable a XSS, para realizar un ataque ***CSRF***. El objetivo es conseguir que, al mostrar el listado de jugadores, aparezca un botón llamado ***Profile*** que, al hacer clic, envíe al usuario a la siguiente URL:
+En este apartado se aprovecha que la aplicación permite introducir ***HTML** en los campos del formulario de edición de jugadores y que estos datos se muestran posteriormente en `list_players.php` sin ningún tipo de filtrado.
+
+El objetivo es conseguir que aparezca un botón llamado ***Profile*** que redirija al usuario al enlace proporcionado en el enunciado:
 
 ```bash
 http://web.pagos/donate.php?amount=100&receiver=attacker
 ```
 
-> De esta forma, cualquier usuario que pulse el botón realizará una donación de ***100€*** al usuario `attacker` en la plataforma `web.pagos`.
+Para ello, se edita un jugador y se introduce el siguiente código en el campo ***team***:
 
+```bash
+<?$team?>
+<br><br>
+<button>
+  <a href="http://web.pagos/donate.php?amount=100&receiver=attacker">Profile</a>
+</button>
+```
 
+<img width="795" height="687" alt="image" src="https://github.com/user-attachments/assets/f632dee1-c836-4064-bd53-33e6a291a7d4" />
+
+Con esto se consigue que, al mostrarse el listado de jugadores, el nombre del equipo se muestre normalmente y justo debajo aparezca el botón ***Profile***, mejorando la visibilidad del ataque y haciéndolo más creíble para el usuario.
+
+Cuando cualquier usuario visualiza el listado de jugadores, el navegador interpreta el código HTML inyectado.
+Al hacer clic en el botón Profile, el usuario es redirigido a la URL:
+
+```bash
+http://web.pagos/donate.php?amount=100&receiver=attacker
+```
+
+<img width="797" height="688" alt="image" src="https://github.com/user-attachments/assets/693132b6-4132-44a3-9a8c-bae1668f9294" />
+
+Si el usuario está autenticado en la plataforma `web.pagos`, la donación de 100€ se realiza automáticamente al usuario `attacker`, sin que el usuario sea consciente de ello.
+
+<img width="907" height="144" alt="image" src="https://github.com/user-attachments/assets/1c3aab40-2dea-4107-9117-dbeaf54631a3" />
+
+El error 404 que se muestra es normal, ya que se trata de una URL ficticia utilizada únicamente para simular el ataque CSRF.
 
 ---
 ### ***b) Ataque CSRF sin interacción del usuario***
@@ -746,6 +773,7 @@ Por este motivo, **no se han aplicado cambios directos en la gestión de la sesi
 
 ---
 ## 8. ***Conclusiones***
+
 
 
 
