@@ -387,17 +387,55 @@ Si el usuario está autenticado en la plataforma `web.pagos`, la donación de 10
 
 El error 404 que se muestra es normal, ya que se trata de una URL ficticia utilizada únicamente para simular el ataque CSRF.
 
+| En el campo ... | `team` |
+|----------------|--------|
+| Introduzco ... | `<?$team?><br><br><button><a href="http://web.pagos/donate.php?amount=100&receiver=attacker">Profile</a></button>` |
+
 ---
 ### ***b) Ataque CSRF sin interacción del usuario***
 ---
 
+Después de comprobar que el ataque del apartado anterior funciona, es evidente que sería mucho más efectivo si el usuario ***no tuviera que hacer clic en ningún botón***.
 
+Para esto, se aprovecha que la página `show_comments.php` es vulnerable a ***XSS***, ya que los comentarios se muestran directamente en la web sin ningún tipo de filtrado o escape del contenido.
+
+#### ***Comentario utilizado***
+
+Se añade un comentario que a simple vista no llama la atención, pero que en realidad ejecuta el ataque de forma automática:
+
+```bash
+<img src="http://web.pagos/donate.php?amount=100&receiver=attacker" style="display:none">
+```
+
+<img width="904" height="686" alt="image" src="https://github.com/user-attachments/assets/15986a1a-0dd3-4627-87c1-58f3af9dd9e1" />
+
+Al usar una etiqueta `<img>` con `display:none`, el comentario no muestra nada raro en la página y pasa completamente desapercibido para los usuarios.
+
+#### ***Qué ocurre realmente***
+
+Cuando un usuario entra a ver los comentarios de un jugador, el navegador carga automáticamente la imagen.
+Al hacerlo, se realiza una petición GET a la URL maliciosa sin que el usuario tenga que hacer nada.
+
+<img width="907" height="689" alt="image" src="https://github.com/user-attachments/assets/a2fbc735-b424-4235-a3bf-fb382579a54f" />
+
+Si el usuario está logueado en la plataforma `web.pagos`, se ejecuta la donación de 100€ al usuario `attacker`.
+
+Este ataque es mucho más peligroso que el anterior, ya que basta con que un usuario ***visualice los comentarios*** para que el CSRF se ejecute.
+No hay botones, no hay avisos y el usuario no es consciente de que está realizando ninguna acción.
 
 ---
-### ***c) Condiciones necesarias para que se ejecute la donación***
+### ***c) Condición necesaria para que se ejecute la donación***
 ---
 
+Para que el ataque CSRF de los apartados anteriores se llegue a ejecutar, es necesario que se cumpla una condición muy concreta.
 
+El usuario que visualiza el comentario malicioso o pulsa el botón tiene que estar autenticado en la plataforma `web.pagos` en ese momento.
+
+Esto es así porque `web.pagos` solo permite realizar donaciones entre usuarios registrados. Si el usuario tiene una sesión activa, su navegador enviará automáticamente la cookie de sesión al cargar la URL `donate.php`, y el servidor asumirá que la petición es legítima.
+
+De esta forma, los 100€ se descuentan de la cuenta del usuario víctima y se transfieren al usuario `attacker` sin que el usuario tenga que confirmar nada.
+
+Si el usuario no está logueado en `web.pagos`, la donación no se puede realizar, ya que el sistema no sabría a qué cuenta cargar el importe.
 
 ---
 ### ***d) Ataque CSRF enviando parámetros por POST***
@@ -773,6 +811,7 @@ Por este motivo, **no se han aplicado cambios directos en la gestión de la sesi
 
 ---
 ## 8. ***Conclusiones***
+
 
 
 
