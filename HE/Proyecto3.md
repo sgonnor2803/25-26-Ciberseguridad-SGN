@@ -441,7 +441,41 @@ Si el usuario no está logueado en `web.pagos`, la donación no se puede realiza
 ### ***d) Ataque CSRF enviando parámetros por POST***
 ---
 
+Cambiar el método de envío de parámetros de ***GET a POST no soluciona el problema CSRF***.
+Aunque a simple vista pueda parecer más seguro, el navegador sigue enviando automáticamente las cookies de sesión cuando se hace una petición POST, igual que con GET.
 
+Por tanto, mientras `web.pagos` no compruebe que la petición ha sido iniciada realmente por el usuario, el ataque sigue siendo posible.
+
+#### ***Ataque CSRF enviando datos por POST***
+
+Para realizar un ataque equivalente al del apartado b), se puede insertar un comentario que contenga un formulario oculto que se envíe automáticamente al cargarse la página.
+
+El comentario utilizado sería el siguiente:
+
+```bash
+<form action="http://web.pagos/donate.php" method="POST" id="csrfForm">
+  <input type="hidden" name="amount" value="100">
+  <input type="hidden" name="receiver" value="attacker">
+</form>
+
+<script>
+  document.getElementById('csrfForm').submit();
+</script>
+```
+
+<img width="905" height="686" alt="image" src="https://github.com/user-attachments/assets/54c9a52f-31c5-4295-8e6d-e5b6db88bd80" />
+
+Este código no muestra nada visible al usuario, pero cuando alguien accede a la página de comentarios, el navegador envía automáticamente la petición POST con los datos de la donación.
+
+#### ***Por qué sigue funcionando***
+
+- El usuario no tiene que hacer clic en nada.
+- Si el usuario está logueado en `web.pagos`, la cookie de sesión se envía automáticamente.
+- El servidor no distingue entre una petición legítima y una generada desde otra web.
+
+<img width="909" height="687" alt="image" src="https://github.com/user-attachments/assets/ceef582c-3ffa-43b8-9a86-4f2d23c2a7a9" />
+
+Por tanto, aunque `donate.php` utilice POST, ***la aplicación sigue siendo vulnerable a CSRF***.
 
 ---
 ## 5. ***Autenticación, control de acceso y sesiones***
@@ -811,6 +845,7 @@ Por este motivo, **no se han aplicado cambios directos en la gestión de la sesi
 
 ---
 ## 8. ***Conclusiones***
+
 
 
 
