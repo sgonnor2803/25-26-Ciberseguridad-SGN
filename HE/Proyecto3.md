@@ -836,20 +836,98 @@ Por este motivo, **no se han aplicado cambios directos en la gestión de la sesi
 ---
 ## 6. ***Seguridad del servidor web***
 
+Además de analizar la seguridad de la aplicación, también es importante tener en cuenta la seguridad del **servidor web**, ya que una mala configuración puede facilitar mucho los ataques, aunque la aplicación no tenga muchos fallos.
 
+A continuación se comentan algunas medidas básicas que se deberían aplicar en un servidor web para reducir el riesgo de ataques.
+
+#### ***Actualización del sistema***
+
+Mantener el sistema operativo y los servicios actualizados es una de las medidas más importantes.
+
+- Actualizar regularmente el sistema y los paquetes instalados
+- Usar versiones actuales de Apache y PHP
+- Evitar versiones que ya no tengan soporte
+
+Esto evita que se puedan explotar vulnerabilidades conocidas.
+
+#### ***Configuración segura de Apache***
+
+Una configuración por defecto puede exponer información innecesaria.
+
+Algunas medidas recomendables serían:
+
+- Desactivar el listado de directorios
+- No mostrar la versión del servidor ni del sistema
+- Bloquear el acceso a carpetas sensibles como `private`
+- Controlar el uso de archivos `.htaccess`
+
+#### ***Uso de HTTPS***
+
+El uso de HTTPS es fundamental para proteger la comunicación entre el navegador y el servidor.
+
+- Evita que se envíen credenciales en texto plano
+- Protege las cookies de sesión
+- Reduce el riesgo de ataques Man-in-the-Middle
+
+En un entorno real se debería usar un certificado válido.
+
+#### ***Permisos de archivos y carpetas***
+
+Los permisos mal configurados pueden permitir accesos no autorizados.
+
+- No usar permisos `777`
+- El servidor web solo debe tener acceso a lo necesario
+- Separar archivos públicos de archivos privados
+
+#### ***Configuración de PHP***
+
+PHP también debe configurarse de forma segura para evitar mostrar información sensible.
+
+- Desactivar `display_errors` en producción
+- Activar `log_errors`
+- Limitar la subida de archivos
+- Desactivar funciones peligrosas si no son necesarias
+
+#### ***Protección básica contra ataques***
+
+Para reducir ataques automáticos y abusos:
+
+- Limitar intentos de login
+- Usar un firewall básico
+- Monitorizar los logs del servidor
+- Usar herramientas como `fail2ban`
+
+Con estas medidas, el servidor web estaría mejor preparado frente a ataques comunes y se reduciría bastante el impacto de posibles vulnerabilidades de la aplicación.
 
 ---
 ## 7. ***Informe de pentesting y mitigaciones***
 
+En este proyecto se ha realizado una auditoría básica de seguridad sobre la aplicación **Talent ScoutTech**, detectando varias vulnerabilidades comunes en aplicaciones web.
 
+A continuación se resumen las principales vulnerabilidades encontradas y las medidas de mitigación propuestas o aplicadas.
+
+| Vulnerabilidad | Riesgo | Mitigación |
+|---------------|-------|-----------|
+| SQL Injection en login y comentarios | Acceso no autorizado y manipulación de datos | Uso de consultas preparadas y validación de entradas |
+| XSS persistente y reflejado | Ejecución de código en el navegador del usuario | Uso de `htmlspecialchars()` al mostrar datos |
+| CSRF en acciones sensibles | Donaciones y acciones sin consentimiento | Uso de tokens CSRF y validación de origen |
+| Gestión insegura de sesiones | Suplantación de usuarios | Uso de sesiones PHP y cookies seguras |
+| Acceso a carpetas sensibles | Exposición de información crítica | Bloqueo de acceso a `private` con `.htaccess` |
+
+Este informe permite tener una visión general del estado de seguridad de la aplicación y sirve como base para aplicar mejoras.
 
 ---
 ## 8. ***Conclusiones***
 
+En este proyecto hemos auditado la aplicación **Talent ScoutTech** y su servidor web, identificando varias vulnerabilidades típicas de aplicaciones web y proponiendo soluciones sencillas pero efectivas.
 
+Lo más destacado es que muchas de las fallas detectadas, como **SQL Injection, XSS y CSRF**, se deben a la falta de validación y escape de datos de los usuarios. También vimos que la gestión de sesiones y cookies era insegura, y que el servidor podría exponerse si no se configuran correctamente permisos y acceso a carpetas privadas.
 
+Con las medidas aplicadas y las recomendaciones propuestas, la aplicación ahora:
 
+- Valida y escapa entradas de usuarios.
+- Evita la ejecución de código malicioso en comentarios y formularios.
+- Limita la posibilidad de ataques CSRF y SQLi.
+- Protege mejor la información sensible en el servidor.
 
-
-
-
+Además, este proyecto nos ha permitido **entender cómo se producen los ataques**, cómo se pueden explotar de forma controlada y qué pasos prácticos se pueden dar para mitigarlos.
