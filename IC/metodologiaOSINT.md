@@ -1,5 +1,7 @@
 <h1 align="center">Metodología OSINT</h1>
 
+![Imagen Presentación](https://github.com/sgonnor2803/25-26-Ciberseguridad-SGN/blob/master/IC/images/bannerPortada.png)
+
 ***Fecha:*** 26 de enero de 2026  
 <br>***Autor***: Sergio González
 
