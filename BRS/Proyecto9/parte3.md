@@ -169,7 +169,7 @@ Aunque pueden servir para pruebas o entornos locales, no son adecuados para siti
 ### ***Evidencia***
 ---
 
-![Certificado autofirmado](https://github.com/user-attachments/assets/58efbb54-d00d-4aac-9a70-c0f6a96b1bf5)
+![Certificado autofirmado](https://github.com/user-attachments/assets/2d176688-3a0d-45e7-bab4-c104fd693783)
 
 ---
 ### 3.3. ***Error de dominio***
